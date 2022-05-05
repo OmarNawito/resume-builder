@@ -7,6 +7,7 @@ import Configs from 'src/config/index';
 import { DatabaseModule } from './database/database.module';
 import { DatabaseService } from './database/database.service';
 import { UsersModule } from './users/users.module';
+import { ResumeModule } from './resume/resume.module';
 
 @Module({
   imports: [
@@ -17,13 +18,13 @@ import { UsersModule } from './users/users.module';
       cache: true,
   }),
   MongooseModule.forRootAsync({
-    connectionName: "test",
     inject: [DatabaseService],
     imports: [DatabaseModule],
     useFactory: (databaseService: DatabaseService) =>
         databaseService.createMongooseOptions(),
 }),
   UsersModule,
+  ResumeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

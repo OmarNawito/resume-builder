@@ -28,6 +28,7 @@ export class DatabaseService implements MongooseOptionsFactory {
     }
 
     createMongooseOptions(): MongooseModuleOptions {
+        console.log("eshtaaaaaaaaaaaaaaaaaa")
         let uri = `${this.host}`;
 
         if (this.database) {
@@ -56,8 +57,8 @@ export class DatabaseService implements MongooseOptionsFactory {
                 password: this.password,
             };
         }
-        console.log('mongooseOptions', mongooseOptions)
-
+        // console.log("mongooseOptions", mongooseOptions)
+        // mongoose.connect(mongooseOptions.uri).then(() => console.log("connected"))
         return mongooseOptions;
     }
 }
