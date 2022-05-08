@@ -1,21 +1,28 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { CreateResumeDto } from './dto/create-resume.dto';
-import { UpdateResumeDto } from './dto/update-resume.dto';
+import { CreatePersonalDetailsDto } from './dto/create-personalDetails.dto';
 import { Resume, ResumeDocument } from './entities/resume.entity';
-import { ResumeModule } from './resume.module';
 import { Model } from 'mongoose';
+import { CreateEducationDto } from './dto/create-education.dto';
 
 
 @Injectable()
 export class ResumeService {
   constructor(@InjectModel(Resume.name) private resumeModel: Model<ResumeDocument>) {}
 
-  async create(createResumeDto: CreateResumeDto) {
+  async createPersonalDetails(id: string, CreatePersonalDetailsDto: CreatePersonalDetailsDto) {
     try {
-      const resume = new this.resumeModel(createResumeDto);
-      await resume.save();
-      return resume;
+      CreatePersonalDetailsDto.resumeId = id
+      return await this.resumeModel.findOneAndUpdate({resumeId: id}, CreatePersonalDetailsDto, {upsert: true, new: true})
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
+  }
+
+  async createEducation(id: string, CreateEducationDto: CreateEducationDto[]) {
+    try {
+      console.log('CreateEducationDto', CreateEducationDto)
+      return await this.resumeModel.findOneAndUpdate({resumeId: id}, {educations: CreateEducationDto}, {upsert: true, new: true})
     } catch (error) {
       throw new InternalServerErrorException(error);
     }
@@ -34,7 +41,7 @@ export class ResumeService {
     return `This action returns a #${id} resume`;
   }
 
-  update(id: number, updateResumeDto: UpdateResumeDto) {
+  update(id: number) {
     return `This action updates a #${id} resume`;
   }
 

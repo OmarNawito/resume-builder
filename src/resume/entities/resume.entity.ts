@@ -8,23 +8,19 @@ export type ResumeDocument = Resume & Document;
 @Schema()
 export class Education {
   @Prop()
-  SchoolName: string;
+  CollegeName: string;
   @Prop()
-  SchoolLocation: string;
-  @Prop()
-  startMonth: Date;
-  @Prop()
-  endMonth: Date;
-  @Prop()
-  startYear: Date;
-  @Prop()
-  endYear: Date;
+  CollegeLocation: string;
   @Prop()
   degree: string;
   @Prop()
-  fieldOfStudy: string;
+  major: string;
   @Prop()
-  description: string;
+  gpa: string;
+  @Prop()
+  startDate: string;
+  @Prop()
+  endDate: string;
 }
 
 const EducationSchema = SchemaFactory.createForClass(Education);
@@ -56,10 +52,13 @@ export class Resume extends Document {
       })
       user?: User;
 
-    @Prop({ required: true, unique: true, type: String })
+    @Prop({ required: true, type: String })
+    resumeId: string;
+
+    @Prop({ required: true, type: String })
     firstName: string;
 
-    @Prop({ required: true, unique: true, type: String })
+    @Prop({ required: true, type: String })
     lastName: string;
 
     @Prop({ required: true, type: String })

@@ -1,15 +1,21 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { ResumeService } from './resume.service';
-import { CreateResumeDto } from './dto/create-resume.dto';
-import { UpdateResumeDto } from './dto/update-resume.dto';
+import { CreatePersonalDetailsDto } from './dto/create-personalDetails.dto';
+import { CreateEducationDto } from './dto/create-education.dto';
 
 @Controller('resume')
 export class ResumeController {
   constructor(private readonly resumeService: ResumeService) {}
 
-  @Post()
-  create(@Body() createResumeDto: CreateResumeDto) {
-    return this.resumeService.create(createResumeDto);
+  @Patch('personal-details/:id')
+  createPersonalDetails(@Param('id') id: string , @Body() CreatePersonalDetailsDto: CreatePersonalDetailsDto) {
+    return this.resumeService.createPersonalDetails(id, CreatePersonalDetailsDto);
+  }
+
+  @Patch('education/:id')
+  createEducation(@Param('id') id: string , @Body() CreateEducationDto: CreateEducationDto[]) {
+    console.log('CreateEducationDto', CreateEducationDto)
+    return this.resumeService.createEducation(id, CreateEducationDto);
   }
 
   @Get()
@@ -23,8 +29,8 @@ export class ResumeController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateResumeDto: UpdateResumeDto) {
-    return this.resumeService.update(+id, updateResumeDto);
+  update(@Param('id') id: string) {
+    return this.resumeService.update(+id);
   }
 
   @Delete(':id')
