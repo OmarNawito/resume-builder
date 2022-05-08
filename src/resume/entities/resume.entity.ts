@@ -8,19 +8,25 @@ export type ResumeDocument = Resume & Document;
 @Schema()
 export class Education {
   @Prop()
-  CollegeName: string;
+  collegeName: string
+
   @Prop()
-  CollegeLocation: string;
+  collegeLocation: string
+
   @Prop()
-  degree: string;
+  degree: string
+
   @Prop()
-  major: string;
+  major: string
+
   @Prop()
-  gpa: string;
+  gpa: string
+
   @Prop()
-  startDate: string;
+  startDate: string
+
   @Prop()
-  endDate: string;
+  endDate: string
 }
 
 const EducationSchema = SchemaFactory.createForClass(Education);
@@ -28,20 +34,55 @@ const EducationSchema = SchemaFactory.createForClass(Education);
 @Schema()
 export class Experience {
   @Prop()
-  position: string;
-  @Prop()
   companyName: string;
   @Prop()
-  startMonth: Date;
+  jobTitle: string;
   @Prop()
-  endMonth: Date;
+  jobLocation: string;
   @Prop()
-  startYear: Date;
+  jobResponsibilities: String[];
   @Prop()
-  endYear: Date;
+  startDate: string;
+  @Prop()
+  endDate: string;
 }
 
 const ExperienceSchema = SchemaFactory.createForClass(Experience);
+@Schema()
+export class Skills {
+  @Prop()
+  name: string;
+  @Prop()
+  details: string[];
+}
+
+const SkillsSchema = SchemaFactory.createForClass(Skills);
+@Schema()
+export class Projects {
+  @Prop()
+  name: string;
+  @Prop()
+  description: string;
+  @Prop()
+  linkToProject: string;
+  @Prop()
+  toolsUsed: String[];
+}
+
+const ProjectsSchema = SchemaFactory.createForClass(Projects);
+@Schema()
+export class Awards {
+  @Prop()
+  name: string;
+  @Prop()
+  date: string;
+  @Prop()
+  awarder: string;
+  @Prop()
+  summary: String;
+}
+
+const AwardsSchema = SchemaFactory.createForClass(Awards);
 
 @Schema({timestamps: true})
 export class Resume extends Document {
@@ -79,14 +120,20 @@ export class Resume extends Document {
     @Prop({ type: String, required: true })
     phone: string;
 
-    @Prop({type: [EducationSchema] })
+    @Prop({type: [EducationSchema], required: true })
     educations: Education[];
 
-    @Prop({type: [ExperienceSchema] })
+    @Prop({type: [ExperienceSchema], required: true })
     experiences: Experience[]
 
-    @Prop({ type: [String], required: true})
-    skills: string[]
+    @Prop({ type: [SkillsSchema], required: true})
+    skills: Skills[]
+
+    @Prop({ type: [ProjectsSchema], required: true})
+    projects: Projects[]
+    
+    @Prop({ type: [AwardsSchema], required: true})
+    awards: Awards[]
 
     @Prop(raw({
         linkedin: { type: String },

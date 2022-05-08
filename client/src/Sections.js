@@ -28,7 +28,7 @@ const Sections = (props) => {
     <div className='sections'>
 			{btns}
 			<hr/>
-			<div onClick={props.buildPdf} className='myBtn'>Build</div>
+			<MyButton name="Build" key="Build" clickHandler={props.buildPdf} isActive={props.buildStepActive}/>
 		</div>
   )
 }

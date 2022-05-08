@@ -1,12 +1,9 @@
 import { IsEmail, IsNotEmpty, IsString } from "class-validator";
 
-export class CreatePersonalDetailsDto {
+export class UpdatePersonalDetailsDto {
     @IsString()
     @IsNotEmpty()
     firstName: string
-
-    @IsString()
-    resumeId: string
 
     @IsString()
     @IsNotEmpty()

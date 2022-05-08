@@ -22,18 +22,95 @@ Accept: application/json
 
 #############################
 
-PATCH  http://localhost:4000/api/resume/education/1234 HTTP/1.1
+PATCH  http://localhost:4000/api/resume/education/1234
 Content-Type: application/json
 Accept: application/json
 
 {
-     "educations": [{
-        "collegeName": "Misr University for science and technology",
-        "collegeLocation": "6 october",
-        "degree": "cs",
-        "major": "Computer Science",
-        "gpa": "5.5",
-        "startDate": "june 2017",
-        "endDate": "may 2021",
-    }],
+    "educations": [
+        {
+            "collegeName": "Misr University for science and technology",
+            "collegeLocation": "nasr city",
+            "degree": "cs",
+            "major": "Computer Scienceaaaaaaaaaaaaaaaa",
+            "gpa": "5.5",
+            "startDate": "june 2017",
+            "endDate": "may 2021"
+        },
+        {
+            "collegeName": "Misr University for science and technology",
+            "collegeLocation": "nasr city",
+            "degree": "cs",
+            "major": "Computer 2333",
+            "gpa": "5.5",
+            "startDate": "june 2017",
+            "endDate": "may 2021"
+        }
+    ]
+}
+#############################
+
+PATCH  http://localhost:4000/api/resume/experience/1234
+Content-Type: application/json
+Accept: application/json
+
+{
+    "experiences": [
+        {
+            "companyName": "Dalia labs",
+            "jobTitle": "Senior Solution Developer",
+            "jobLocation": "6 october",
+            "jobResponsibilities": ["Backend Enginner"],
+            "startDate": "june 2017",
+            "endDate": "may 2021"
+        },
+        {
+            "companyName": "4deve",
+            "jobTitle": "Senior Solution Developer",
+            "jobLocation": "6 october",
+            "jobResponsibilities": ["Backend Enginner"],
+            "startDate": "june 2017",
+            "endDate": "may 2021"
+        }
+    ]
+}
+#############################
+
+PATCH  http://localhost:4000/api/resume/skills/1234
+Content-Type: application/json
+Accept: application/json
+
+{
+    "skills": [
+        {
+            "name": "Javascript",
+            "details": "react"
+        },
+        {
+            "name": "php",
+            "details": "laravel"
+        }
+    ]
+}
+#############################
+
+PATCH  http://localhost:4000/api/resume/projects/1234
+Content-Type: application/json
+Accept: application/json
+
+{
+    "projects": [
+        {
+            "name": "LangChat",
+            "description": "Mobile Application",
+            "linkToProject": "asd",
+            "toolsUsed": ["react, redux, firebase"]
+        },
+        {
+            "name": "Swaps",
+            "description": "Mobile Application",
+            "linkToProject": "asd",
+            "toolsUsed": ["react, redux, firebase"]
+        }
+    ]
 }

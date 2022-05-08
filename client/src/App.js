@@ -30,60 +30,60 @@ function App() {
       Education: {
         name: 'Education', heading: '', extra: true, sections: [
           {
-            'College Name': { required: true, value: '', placeHolder: 'Name', type: 'text' },
-            'College Location': { required: true, value: '', placeHolder: 'Stanford, CA', type: 'text' },
-            'Degree': { required: true, value: '', placeHolder: 'BS', type: 'text' },
-            'Major': { required: true, value: '', placeHolder: 'Computer Science', type: 'text' },
-            'GPA': { required: true, value: '', placeHolder: '5.5', type: 'text' },
-            'Start Date': { required: true, value: '', placeHolder: 'June 2017', type: 'text' },
-            'End Date': { required: true, value: '', placeHolder: 'May 2021', type: 'text' }
+            collegeName: { required: true, value: '', placeHolder: 'Name', type: 'text' },
+            collegeLocation: { required: true, value: '', placeHolder: 'Stanford, CA', type: 'text' },
+            degree: { required: true, value: '', placeHolder: 'BS', type: 'text' },
+            major: { required: true, value: '', placeHolder: 'Computer Science', type: 'text' },
+            gpa: { required: true, value: '', placeHolder: '5.5', type: 'text' },
+            startDate: { required: true, value: '', placeHolder: 'June 2017', type: 'text' },
+            endDate: { required: true, value: '', placeHolder: 'May 2021', type: 'text' }
           }
         ]
       },
       Work: {
         name: 'Work', heading: '', extra: true, sections: [
           {
-            'Company Name': { required: true, value: '', placeHolder: 'Google', type: 'text' },
-            'Job Title': { required: true, value: '', placeHolder: 'Software Engineer', type: 'text' },
-            'Job Location': { required: true, value: '', placeHolder: 'Mountain View, CA', type: 'text' },
-            'Start Date': { required: true, value: '', placeHolder: 'June 2017', type: 'text' },
-            'End Date': { required: true, value: '', placeHolder: 'May 2021 / Present / Etc.', type: 'text' },
-            'Job Responsibilities': { required: true, value: [''], placeHolder: 'I did this stuff in company', type: 'addable' }
+            companyName: { required: true, value: '', placeHolder: 'Google', type: 'text' },
+            jobTitle: { required: true, value: '', placeHolder: 'Software Engineer', type: 'text' },
+            jobLocation: { required: true, value: '', placeHolder: 'Mountain View, CA', type: 'text' },
+            endDate: { required: true, value: '', placeHolder: 'June 2017', type: 'text' },
+            startDate: { required: true, value: '', placeHolder: 'May 2021 / Present / Etc.', type: 'text' },
+            jobResponsibilities: { required: true, value: [''], placeHolder: 'I did this stuff in company', type: 'addable' }
           }
         ]
       },
       Skills: {
         name: 'Skills', heading: '', extra: true, sections: [
           {
-            'Skill Name': { required: true, value: '', placeHolder: 'Programming Languages', type: 'text' },
-            'Skill Details': { required: true, value: [''], placeHolder: 'Java', type: 'addable' }
+            'name': { required: true, value: '', placeHolder: 'Programming Languages', type: 'text' },
+            'details': { required: true, value: [''], placeHolder: 'Java', type: 'addable' }
           }
         ]
       },
       Projects: {
         name: 'Projects', heading: '', extra: true, sections: [
           {
-            'Project Name': { required: true, value: '', placeHolder: 'Chat App', type: 'text' },
-            'Project Description': { required: true, value: '', placeHolder: 'Online chat app', type: 'text' },
-            'Link to Project': { required: true, value: '', placeHolder: 'https://project.com', type: 'text' },
-            'Tools Used': { required: true, value: [''], placeHolder: 'Java', type: 'addable' }
+            name: { required: true, value: '', placeHolder: 'Chat App', type: 'text' },
+            description: { required: true, value: '', placeHolder: 'Online chat app', type: 'text' },
+            linkToProject: { required: true, value: '', placeHolder: 'https://project.com', type: 'text' },
+            toolsUsed: { required: true, value: [''], placeHolder: 'Java', type: 'addable' }
           }
         ]
       },
       Awards: {
         name: 'Awards', heading: '', extra: true, sections: [
           {
-            'Award Name': { required: true, value: '', placeHolder: 'FrontEnd Developer', type: 'text' },
-            'Award Date': { required: true, value: '', placeHolder: 'Sep 2020', type: 'text' },
-            'Awarder': { required: true, value: '', placeHolder: 'FreeCodeCamp', type: 'text' },
-            'Summary': { required: true, value: '', placeHolder: 'Rewarded for 300 hours course work and projects', type: 'text' }
+            name: { required: true, value: '', placeHolder: 'FrontEnd Developer', type: 'text' },
+            date: { required: true, value: '', placeHolder: 'Sep 2020', type: 'text' },
+            awarder: { required: true, value: '', placeHolder: 'FreeCodeCamp', type: 'text' },
+            summary: { required: true, value: '', placeHolder: 'Rewarded for 300 hours course work and projects', type: 'text' }
           }
         ]
       }
     }
   );
 
-  let [templates, setTemplates] = useState([
+  const [templates, setTemplates] = useState([
     {
       id: 1,
       src: Template1,
@@ -97,8 +97,6 @@ function App() {
     setResume(resume);
     sectionHandler(content.name);
   }
-
-
 
   let [sections, setSections] = useState([
     { name: "Templates", active: true },
@@ -119,36 +117,76 @@ function App() {
     }));
     sectionHandler("Templates");
   }
-
-  const personalDetails = {
-    firstName: resume.Profile.sections[0].firstName.value,
-    lastName: resume.Profile.sections[0].lastName.value,
-    sureName: resume.Profile.sections[0].sureName.value,
-    email: resume.Profile.sections[0].Email.value,
-    phone: resume.Profile.sections[0].phone.value,
-    zipCode: resume.Profile.sections[0].zipCode.value,
-    country: resume.Profile.sections[0].Country.value,
-    city: resume.Profile.sections[0].City.value,
-    address: resume.Profile.sections[0].Address.value,
+  if (!resumeID) {
+    setResumeID(Math.random().toString(16).slice(-4))
   }
 
   const nextSection = async () => {
     if (activeSection < sections.length - 1) {
       setActiveSection(activeSection + 1);
       sectionHandler(sections[activeSection + 1].name);
-
-      if (!resumeID) {
-        setResumeID(Math.random().toString(16).slice(-4))
-      }
-
-      switch (resume.Profile.name) {
-        case 'Profile':
-          const response = await axios.patch(`/resume/personal-details/${resumeID}`, personalDetails);
-          console.log('response', response)
-          break;
-        case 'Template':
+      switch (activeSection) {
+        case 1:
+          const personalDetails = {
+            firstName: resume.Profile.sections[0].firstName.value,
+            lastName: resume.Profile.sections[0].lastName.value,
+            sureName: resume.Profile.sections[0].sureName.value,
+            email: resume.Profile.sections[0].Email.value,
+            phone: resume.Profile.sections[0].phone.value,
+            zipCode: resume.Profile.sections[0].zipCode.value,
+            country: resume.Profile.sections[0].Country.value,
+            city: resume.Profile.sections[0].City.value,
+            address: resume.Profile.sections[0].Address.value,
+          }
+          await axios.patch(`/resume/personal-details/${resumeID}`, personalDetails);
+          break
+        case 2:
+          const eductionsData = JSON.parse(JSON.stringify(resume.Education.sections)).map(entry => {
+            for (const key of Object.keys(entry)) {
+                entry[key] = entry[key].value
+            }
+            return entry
+          })
+          await axios.patch(`/resume/education/${resumeID}`, {"educations": eductionsData});
+          break
+        case 3:
+          const ExperienceData = JSON.parse(JSON.stringify(resume.Work.sections)).map(entry => {
+            for (const key of Object.keys(entry)) {
+                entry[key] = entry[key].value
+            }
+            return entry
+          })
+          await axios.patch(`/resume/experience/${resumeID}`, {"experiences": ExperienceData});
+          break
+        case 4:
+          const SkillsData = JSON.parse(JSON.stringify(resume.Skills.sections)).map(entry => {
+            for (const key of Object.keys(entry)) {
+                entry[key] = entry[key].value
+            }
+            return entry
+          })
+          await axios.patch(`/resume/skills/${resumeID}`, {"skills": SkillsData});
+          break
+        case 5:
+          const ProjectData = JSON.parse(JSON.stringify(resume.Projects.sections)).map(entry => {
+            for (const key of Object.keys(entry)) {
+                entry[key] = entry[key].value
+            }
+            return entry
+          })
+          await axios.patch(`/resume/projects/${resumeID}`, {"projects": ProjectData});
+          break
+        case 6:
+          const awards = JSON.parse(JSON.stringify(resume.Projects.sections)).map(entry => {
+            for (const key of Object.keys(entry)) {
+                entry[key] = entry[key].value
+            }
+            return entry
+          })
+          await axios.patch(`/resume/projects/${resumeID}`, {"awards": awards});
+          break
         default:
-          break;
+          break
       }
     }
   }
@@ -160,14 +198,9 @@ function App() {
     }
   }
 
-
-
-
-  console.log('resume', resume.Profile.name)
-
   async function saveData() {
     try {
-      const response = await axios.post('/resume/personal-details', personalDetails);
+      const response = await axios.post('/resume/personal-details');
       console.log(response);
     } catch (error) {
       console.error(error);
@@ -201,7 +234,7 @@ function App() {
     }
   }
 
-  let more = (<div className='row_full'>
+  let more = (<div className='row-full'>
     {prev}
     {make}
     {next}

@@ -14,7 +14,7 @@ services:
       - .:/app
 
   redis:
-    container_name: redis
+    container_name: redis-resume
     build: 
         context: ./redis
     image: redis        
@@ -29,7 +29,7 @@ services:
 
 
   mongo:
-    container_name: mongo
+    container_name: mongo-reusme
     hostname: mongo
     build: 
         context: ./mongo

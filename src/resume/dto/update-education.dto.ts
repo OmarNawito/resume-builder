@@ -1,6 +1,13 @@
-import { IsNotEmpty, IsString } from "class-validator";
+import { Type } from "class-transformer";
+import { IsArray, IsNotEmpty, IsString, ValidateNested } from "class-validator";
 
-export class CreateEducationDto {
+export class UpdateEducationDto {
+	@ValidateNested({ each: true })
+  @Type(() => UpdateEducation)
+  educations: UpdateEducation[];
+}
+
+export class UpdateEducation {
     @IsString()
     @IsNotEmpty()
     collegeName: string
@@ -23,7 +30,7 @@ export class CreateEducationDto {
 
     @IsString()
     @IsNotEmpty()
-    starDate: string
+    startDate: string
     
     @IsString()
     @IsNotEmpty()

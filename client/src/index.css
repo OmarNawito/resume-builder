@@ -310,3 +310,10 @@ hr{
   border-radius: 2px;
   margin: 0px 5px;
 }
+
+.row-full{
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  padding-right: .2rem;
+}

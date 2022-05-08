@@ -1,28 +1,62 @@
+import { UpdateProjectsDto } from './dto/update-projects.dto';
+import { UpdateAwardsDto } from './dto/update-awards.dto';
+import { UpdateSkillDto } from './dto/update-skill.dto';
+import { UpdateExperienceDto } from './dto/update-experience.dto';
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { CreatePersonalDetailsDto } from './dto/create-personalDetails.dto';
+import { UpdatePersonalDetailsDto } from './dto/update-personalDetails.dto';
 import { Resume, ResumeDocument } from './entities/resume.entity';
 import { Model } from 'mongoose';
-import { CreateEducationDto } from './dto/create-education.dto';
+import { UpdateEducationDto } from './dto/update-education.dto';
 
 
 @Injectable()
 export class ResumeService {
-  constructor(@InjectModel(Resume.name) private resumeModel: Model<ResumeDocument>) {}
+  constructor(@InjectModel(Resume.name) private resumeModel: Model<ResumeDocument>) { }
 
-  async createPersonalDetails(id: string, CreatePersonalDetailsDto: CreatePersonalDetailsDto) {
+  async updatePersonalDetails(id: string, updatePersonalDetailsDto: UpdatePersonalDetailsDto) {
     try {
-      CreatePersonalDetailsDto.resumeId = id
-      return await this.resumeModel.findOneAndUpdate({resumeId: id}, CreatePersonalDetailsDto, {upsert: true, new: true})
+      return await this.resumeModel.findOneAndUpdate({ resumeId: id }, { $set: updatePersonalDetailsDto }, { upsert: true, new: true })
     } catch (error) {
       throw new InternalServerErrorException(error);
     }
   }
 
-  async createEducation(id: string, CreateEducationDto: CreateEducationDto[]) {
+  async updateEducation(id: string, updateEducationDto: UpdateEducationDto) {
     try {
-      console.log('CreateEducationDto', CreateEducationDto)
-      return await this.resumeModel.findOneAndUpdate({resumeId: id}, {educations: CreateEducationDto}, {upsert: true, new: true})
+      return await this.resumeModel.findOneAndUpdate({ resumeId: id }, { $set: updateEducationDto }, { upsert: true, new: true })
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
+  }
+
+  async updateExperience(id: string, updateExperienceDto: UpdateExperienceDto) {
+    try {
+      return await this.resumeModel.findOneAndUpdate({ resumeId: id }, { $set: updateExperienceDto }, { upsert: true, new: true })
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
+  }
+
+  async updateSkill(id: string, updateSkillDto: UpdateSkillDto) {
+    try {
+      return await this.resumeModel.findOneAndUpdate({ resumeId: id }, { $set: updateSkillDto }, { upsert: true, new: true })
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
+  }
+
+  async updateProject(id: string, updateProjectsDto: UpdateProjectsDto) {
+    try {
+      return await this.resumeModel.findOneAndUpdate({ resumeId: id }, { $set: updateProjectsDto }, { upsert: true, new: true })
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
+  }
+
+  async updateAwards(id: string, updateAwardsDto: UpdateAwardsDto) {
+    try {
+      return await this.resumeModel.findOneAndUpdate({ resumeId: id }, { $set: updateAwardsDto }, { upsert: true, new: true })
     } catch (error) {
       throw new InternalServerErrorException(error);
     }
