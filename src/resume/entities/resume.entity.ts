@@ -1,7 +1,6 @@
 import { Prop, raw, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 import { Document } from 'mongoose';
-import { User } from 'src/users/entities/user.entity';
 
 export type ResumeDocument = Resume & Document;
 
@@ -86,13 +85,6 @@ const AwardsSchema = SchemaFactory.createForClass(Awards);
 
 @Schema({ timestamps: true })
 export class Resume extends Document {
-  @Prop({
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    default: null,
-  })
-  user?: User;
-
   @Prop({ required: true, type: String })
   resumeId: string;
 

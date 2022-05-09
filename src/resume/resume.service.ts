@@ -9,13 +9,13 @@ import { Resume, ResumeDocument } from './entities/resume.entity';
 import { Model } from 'mongoose';
 import { UpdateEducationDto } from './dto/update-education.dto';
 import * as fs from 'fs';
-import * as pdf from "html-pdf-node-ts";
+import * as pdf from 'html-pdf-node-ts';
 
 @Injectable()
 export class ResumeService {
   constructor(
     @InjectModel(Resume.name) private resumeModel: Model<ResumeDocument>,
-  ) { }
+  ) {}
 
   async updatePersonalDetails(
     id: string,
@@ -103,14 +103,21 @@ export class ResumeService {
   async resumePdf(style: string, resume: string, res) {
     try {
       const resumeHTML = `<html><head><style>${style}</style></head><body>${resume}</body></html>`;
-      console.log('resumeHTML', resumeHTML, __dirname + '/Resumes')
+      console.log('resumeHTML', resumeHTML, __dirname + '/Resumes');
       fs.writeFileSync(__dirname + '/Resumes/resume.html', resumeHTML);
-      const fileData = fs.readFileSync(__dirname + '/Resumes/resume.html', 'utf8');
-      const options: any = { format: 'A4', path: __dirname + "/Resumes/resume.pdf", margin: { bottom: "20px", top: "40px", left: 0, right: 0 } };
-      let file = { content: fileData };
+      const fileData = fs.readFileSync(
+        __dirname + '/Resumes/resume.html',
+        'utf8',
+      );
+      const options: any = {
+        format: 'A4',
+        path: __dirname + '/Resumes/resume.pdf',
+        margin: { bottom: '20px', top: '40px', left: 0, right: 0 },
+      };
+      const file = { content: fileData };
       return await pdf.generatePdf(file, options);
     } catch (error) {
-      console.log('error', error)
+      console.log('error', error);
       return error;
     }
   }

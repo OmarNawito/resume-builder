@@ -6,7 +6,6 @@ import { ConfigModule } from '@nestjs/config';
 import Configs from 'src/config/index';
 import { DatabaseModule } from './database/database.module';
 import { DatabaseService } from './database/database.service';
-import { UsersModule } from './users/users.module';
 import { ResumeModule } from './resume/resume.module';
 
 @Module({
@@ -23,7 +22,6 @@ import { ResumeModule } from './resume/resume.module';
       useFactory: (databaseService: DatabaseService) =>
         databaseService.createMongooseOptions(),
     }),
-    UsersModule,
     ResumeModule,
   ],
   controllers: [AppController],
