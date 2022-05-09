@@ -24,16 +24,20 @@ code {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-*{
+* {
   padding: 0px;
   margin: 0px;
 }
 
-.header{
+.header {
   text-align: center;
   padding: 15px;
   height: 30px;
@@ -43,27 +47,28 @@ code {
   box-shadow: 1px 1px 5px 2px #224b4b;
 }
 
-#root, .container{
+#root,
+.container {
   height: 100%;
 }
 
-.pdf{
+.pdf {
   width: 100%;
   height: 100%;
 }
 
-.buildPdf{
+.buildPdf {
   color: black;
 }
 
-.pdfOptions{
+.pdfOptions {
   width: 100%;
   background-color: rgb(35.859, 27.891, 27.891);
   display: flex;
   flex-direction: row;
 }
 
-.sections{
+.sections {
   border-right: solid 1px rgb(60, 40, 27.891);
   flex-basis: 0;
   flex-grow: 1;
@@ -73,7 +78,7 @@ code {
   box-shadow: 1px 1px 5px 2px #224b4b;
 }
 
-.template{
+.template {
   color: white;
   display: flex;
   flex-direction: row;
@@ -91,7 +96,7 @@ code {
   box-shadow: 1px 1px 5px 2px #224b4b;
 }
 
-.preview{
+.preview {
   color: white;
   display: flex;
   flex-direction: column;
@@ -104,7 +109,7 @@ code {
   overflow: auto;
 }
 
-object p{
+object p {
   text-align: center;
   color: black;
   margin: 0px 20%;
@@ -112,7 +117,7 @@ object p{
   width: 70%;
 }
 
-object a{
+object a {
   text-align: center;
   color: black;
   margin: 0px 40%;
@@ -120,8 +125,7 @@ object a{
   display: block;
 }
 
-
-.customSeciton{
+.customSeciton {
   font-size: 15px;
   color: white;
   display: flex;
@@ -136,14 +140,14 @@ object a{
   box-shadow: 1px 1px 5px 2px #224b4b;
 }
 
-.row{
+.row {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   overflow: auto;
 }
 
-.footer{
+.footer {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -152,8 +156,7 @@ object a{
   border-top: solid 1px rgb(60, 40, 27.891);
 }
 
-
-.container{
+.container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -163,7 +166,7 @@ object a{
   overflow: auto;
 }
 
-.myBtnDel{
+.myBtnDel {
   padding: 5px;
   margin: 10px;
   padding-left: 10px;
@@ -173,17 +176,16 @@ object a{
   cursor: pointer;
   color: rgb(218, 72, 72);
   background-color: transparent;
-  border: solid 2px rgb(218, 72, 72)
+  border: solid 2px rgb(218, 72, 72);
 }
 
-.myBtnDel:hover{
+.myBtnDel:hover {
   background-color: rgb(218, 72, 72);
   box-shadow: 1px 1px 5px 2px #224b4b;
   color: rgb(63, 66, 68);
 }
 
-
-.myBtn{
+.myBtn {
   padding: 5px;
   margin: 10px;
   padding-left: 10px;
@@ -198,13 +200,13 @@ object a{
   text-decoration: none;
 }
 
-.myBtn:hover{
+.myBtn:hover {
   background-color: rgb(149, 223, 162);
   box-shadow: 1px 1px 5px 2px #224b4b;
   color: rgb(63, 66, 68);
 }
 
-.myBtnActive{
+.myBtnActive {
   padding: 5px;
   margin: 10px;
   padding-left: 10px;
@@ -217,7 +219,7 @@ object a{
   color: rgb(63, 66, 68);
 }
 
-.myBtnActive2{
+.myBtnActive2 {
   padding: 5px;
   margin: 10px;
   padding-left: 10px;
@@ -231,13 +233,13 @@ object a{
   text-decoration: none;
 }
 
-.myBtnActive2:hover{
+.myBtnActive2:hover {
   background-color: transparent;
   box-shadow: 1px 1px 5px 2px #224b4b;
   color: rgb(149, 223, 162);
 }
 
-.templateCard{
+.templateCard {
   border: 2px solid rgb(149, 223, 162);
   display: flex;
   flex-direction: column;
@@ -249,7 +251,7 @@ object a{
   font-size: 15px;
 }
 
-.templateCardActive{
+.templateCardActive {
   font-size: 15px;
   cursor: pointer;
   border: solid 2px rgb(149, 223, 162);
@@ -265,21 +267,23 @@ object a{
   margin: 5px;
 }
 
-.templateCard img, .templateCardActive img{
+.templateCard img,
+.templateCardActive img {
   width: 150px;
   height: 190px;
   padding: 4px;
 }
 
-@media (max-width: 880px){
-  .templateCard img, .templateCardActive img{
+@media (max-width: 880px) {
+  .templateCard img,
+  .templateCardActive img {
     width: 80vw;
     height: 70vh;
     padding: 4px;
   }
 }
 
-.templateCard:hover{
+.templateCard:hover {
   cursor: pointer;
   border: solid 2px rgb(149, 223, 162);
   background-color: rgb(149, 223, 162);
@@ -287,72 +291,70 @@ object a{
   color: rgb(63, 66, 68);
 }
 
-.templateCard p, .templateCardActive p{
+.templateCard p,
+.templateCardActive p {
   margin: 5px 0;
   text-transform: uppercase;
 }
 
-
-.rowSub{
+.rowSub {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
 
-.rowSub *{
+.rowSub * {
   flex-basis: 0;
   flex-grow: 1;
 }
 
-
-.customSeciton h3{
+.customSeciton h3 {
   text-transform: uppercase;
   margin: 5px;
   margin-top: 10px;
   padding: 5px;
 }
 
-.subSection{
-
+.subSection {
 }
 
-.labelInput{
+.labelInput {
   margin: 7px;
   display: flex;
   flex-direction: column;
 }
 
-.labelInput *{
+.labelInput * {
   margin: 5px;
 }
 
-.form-control{
+.form-control {
   color: white;
   background-color: rgb(35.859, 27.891, 27.891);
-  border:  none;
+  border: none;
   border-bottom: solid 1px rgb(60, 40, 27.891);
   padding: 5px;
   font-size: 90%;
   border-radius: 2px;
 }
 
-.form-control:focus{
+.form-control:focus {
   border-bottom: solid 1px rgb(149, 223, 162);
-  color: rgb(149, 223, 162);;
+  color: rgb(149, 223, 162);
   outline: none;
 }
 
-hr{
+hr {
   border: none;
   border-bottom: solid 4px rgb(149, 223, 162);
   border-radius: 2px;
   margin: 0px 5px;
 }
 
-.row-full{
+.row-full {
   width: 100%;
   display: flex;
   justify-content: end;
-  padding-right: .2rem;
+  padding-right: 0.2rem;
 }
