@@ -1,19 +1,29 @@
-import React, { useState } from 'react'
-import Header from './Header';
-import Sections from './Sections';
-import Template from './components/Template';
-import Template1 from "./Images/template1.png"
-import Section from './components/Section';
+import React, { useState, useEffect } from 'react'
+import Header from './Header'
+import Sections from './Sections'
+import Template from './components/Template'
+import Preview from './Preview'
+import Template1 from './Images/template1.png'
+import Section from './components/Section'
 import axios from 'axios'
+import { Style as style1, Render as render1 } from './Templates/template1'
 
-function App() {
-  let [activeSection, setActiveSection] = useState(0);
-  let [resumeID, setResumeID] = useState()
+function App () {
+  const [style, setStyle] = useState(1)
+  const [activeSection, setActiveSection] = useState(0)
+  const [resumeID, setResumeID] = useState()
+  const [pdfLoading, setPdfLoading] = useState(false)
+  const [pdf, setPdf] = useState('')
 
-  let [resume, setResume] = useState(
+  let render, cssStyle
+
+  const [resume, setResume] = useState(
     {
       Profile: {
-        name: 'Profile', heading: '', extra: false, sections: [
+        name: 'Profile',
+        heading: '',
+        extra: false,
+        sections: [
           {
             firstName: { required: true, value: '', placeHolder: 'firstName', type: 'text' },
             lastName: { required: true, value: '', placeHolder: 'lastName', type: 'text' },
@@ -28,7 +38,10 @@ function App() {
         ]
       },
       Education: {
-        name: 'Education', heading: '', extra: true, sections: [
+        name: 'Education',
+        heading: '',
+        extra: true,
+        sections: [
           {
             collegeName: { required: true, value: '', placeHolder: 'Name', type: 'text' },
             collegeLocation: { required: true, value: '', placeHolder: 'Stanford, CA', type: 'text' },
@@ -41,7 +54,10 @@ function App() {
         ]
       },
       Work: {
-        name: 'Work', heading: '', extra: true, sections: [
+        name: 'Work',
+        heading: '',
+        extra: true,
+        sections: [
           {
             companyName: { required: true, value: '', placeHolder: 'Google', type: 'text' },
             jobTitle: { required: true, value: '', placeHolder: 'Software Engineer', type: 'text' },
@@ -53,15 +69,21 @@ function App() {
         ]
       },
       Skills: {
-        name: 'Skills', heading: '', extra: true, sections: [
+        name: 'Skills',
+        heading: '',
+        extra: true,
+        sections: [
           {
-            'name': { required: true, value: '', placeHolder: 'Programming Languages', type: 'text' },
-            'details': { required: true, value: [''], placeHolder: 'Java', type: 'addable' }
+            name: { required: true, value: '', placeHolder: 'Programming Languages', type: 'text' },
+            details: { required: true, value: [''], placeHolder: 'Java', type: 'addable' }
           }
         ]
       },
       Projects: {
-        name: 'Projects', heading: '', extra: true, sections: [
+        name: 'Projects',
+        heading: '',
+        extra: true,
+        sections: [
           {
             name: { required: true, value: '', placeHolder: 'Chat App', type: 'text' },
             description: { required: true, value: '', placeHolder: 'Online chat app', type: 'text' },
@@ -71,7 +93,10 @@ function App() {
         ]
       },
       Awards: {
-        name: 'Awards', heading: '', extra: true, sections: [
+        name: 'Awards',
+        heading: '',
+        extra: true,
+        sections: [
           {
             name: { required: true, value: '', placeHolder: 'FrontEnd Developer', type: 'text' },
             date: { required: true, value: '', placeHolder: 'Sep 2020', type: 'text' },
@@ -81,41 +106,77 @@ function App() {
         ]
       }
     }
-  );
+  )
 
   const [templates, setTemplates] = useState([
     {
       id: 1,
       src: Template1,
-      title: "Template 1",
+      title: 'Template 1',
       active: true
     }
-  ]);
+  ])
 
   const contentHandler = (content) => {
-    resume[content.name] = content;
-    setResume(resume);
-    sectionHandler(content.name);
+    resume[content.name] = content
+    setResume(resume)
+    sectionHandler(content.name)
   }
 
-  let [sections, setSections] = useState([
-    { name: "Templates", active: true },
-    { name: "Profile", active: false },
-    { name: "Education", active: false },
-    { name: "Work", active: false },
-    { name: "Skills", active: false },
-    { name: "Projects", active: false },
-    { name: "Awards", active: false }
-  ]);
+  async function downloadPdf (open = false) {
+    try {
+      setPdfLoading(true)
+      setPdf('')
+      const response = await axios.post('/resume', { resume: "<div class='template1'>" + render + '</div>', style: cssStyle }, { responseType: 'blob' })
+      setPdfLoading(false)
+      console.log(response)
+      // const content = response.headers['content-type']
+      // download(response.data, "resume.pdf", content)
+      // if (open) window.open(URL.createObjectURL(response.data))
+      //        var url = window.URL.createObjectURL(response.data)
+      // var a = document.createElement('a')
+      // a.href = url
+      // a.download = "resume.pdf"
+      // a.click()
+      // a.remove()
+      // setTimeout(() => window.URL.revokeObjectURL(url), 100)
+
+      //
+      const objectURL = URL.createObjectURL(response.data)
+      setPdf(objectURL)
+    //
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  switch (style) {
+    case 1:
+      render = render1(resume)[0]
+      cssStyle = style1
+      break
+    default:
+      break
+  }
+
+  const [sections, setSections] = useState([
+    { name: 'Templates', active: true },
+    { name: 'Profile', active: false },
+    { name: 'Education', active: false },
+    { name: 'Work', active: false },
+    { name: 'Skills', active: false },
+    { name: 'Projects', active: false },
+    { name: 'Awards', active: false }
+  ])
 
   const templateHandler = (id) => {
-    console.log(id);
     setTemplates(templates.map(t => {
-      if (t.id === id) t.active = true;
-      else if (t.active === true) t.active = false;
-      return t;
-    }));
-    sectionHandler("Templates");
+      if (t.id === id) t.active = true
+      else if (t.active === true) t.active = false
+      return t
+    }))
+    setStyle(id)
+    sectionHandler('Templates')
   }
   if (!resumeID) {
     setResumeID(Math.random().toString(16).slice(-4))
@@ -123,8 +184,8 @@ function App() {
 
   const nextSection = async () => {
     if (activeSection < sections.length - 1) {
-      setActiveSection(activeSection + 1);
-      sectionHandler(sections[activeSection + 1].name);
+      setActiveSection(activeSection + 1)
+      sectionHandler(sections[activeSection + 1].name)
       switch (activeSection) {
         case 1:
           const personalDetails = {
@@ -136,54 +197,54 @@ function App() {
             zipCode: resume.Profile.sections[0].zipCode.value,
             country: resume.Profile.sections[0].Country.value,
             city: resume.Profile.sections[0].City.value,
-            address: resume.Profile.sections[0].Address.value,
+            address: resume.Profile.sections[0].Address.value
           }
-          await axios.patch(`/resume/personal-details/${resumeID}`, personalDetails);
+          await axios.patch(`/resume/personal-details/${resumeID}`, personalDetails)
           break
         case 2:
           const eductionsData = JSON.parse(JSON.stringify(resume.Education.sections)).map(entry => {
             for (const key of Object.keys(entry)) {
-                entry[key] = entry[key].value
+              entry[key] = entry[key].value
             }
             return entry
           })
-          await axios.patch(`/resume/education/${resumeID}`, {"educations": eductionsData});
+          await axios.patch(`/resume/education/${resumeID}`, { educations: eductionsData })
           break
         case 3:
           const ExperienceData = JSON.parse(JSON.stringify(resume.Work.sections)).map(entry => {
             for (const key of Object.keys(entry)) {
-                entry[key] = entry[key].value
+              entry[key] = entry[key].value
             }
             return entry
           })
-          await axios.patch(`/resume/experience/${resumeID}`, {"experiences": ExperienceData});
+          await axios.patch(`/resume/experience/${resumeID}`, { experiences: ExperienceData })
           break
         case 4:
           const SkillsData = JSON.parse(JSON.stringify(resume.Skills.sections)).map(entry => {
             for (const key of Object.keys(entry)) {
-                entry[key] = entry[key].value
+              entry[key] = entry[key].value
             }
             return entry
           })
-          await axios.patch(`/resume/skills/${resumeID}`, {"skills": SkillsData});
+          await axios.patch(`/resume/skills/${resumeID}`, { skills: SkillsData })
           break
         case 5:
           const ProjectData = JSON.parse(JSON.stringify(resume.Projects.sections)).map(entry => {
             for (const key of Object.keys(entry)) {
-                entry[key] = entry[key].value
+              entry[key] = entry[key].value
             }
             return entry
           })
-          await axios.patch(`/resume/projects/${resumeID}`, {"projects": ProjectData});
+          await axios.patch(`/resume/projects/${resumeID}`, { projects: ProjectData })
           break
         case 6:
           const awards = JSON.parse(JSON.stringify(resume.Projects.sections)).map(entry => {
             for (const key of Object.keys(entry)) {
-                entry[key] = entry[key].value
+              entry[key] = entry[key].value
             }
             return entry
           })
-          await axios.patch(`/resume/projects/${resumeID}`, {"awards": awards});
+          await axios.patch(`/resume/projects/${resumeID}`, { awards })
           break
         default:
           break
@@ -193,66 +254,63 @@ function App() {
 
   const prevSection = () => {
     if (activeSection > 0) {
-      setActiveSection(activeSection - 1);
-      sectionHandler(sections[activeSection - 1].name);
+      setActiveSection(activeSection - 1)
+      sectionHandler(sections[activeSection - 1].name)
     }
   }
 
-  async function saveData() {
-    try {
-      const response = await axios.post('/resume/personal-details');
-      console.log(response);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  const [section, setSection] = useState((<Template templates={templates} handler={templateHandler} />))
 
-  let [section, setSection] = useState((<Template templates={templates} handler={templateHandler} />));
+  let prev, next, make
 
-  let prev, next, make;
-
-  if (activeSection > 0) prev = (<div className='myBtn' onClick={prevSection}>Prev</div>);
-  else prev = (<div className='myBtn' style={{ "pointerEvents": "none", "opacity": "0.5" }}>Prev</div>);
-  if (activeSection >= 0 && activeSection < sections.length - 1) next = (<div className='myBtn' onClick={nextSection}>Next</div>);
-  else next = (<div className='myBtn' style={{ "pointerEvents": "none", "opacity": "0.5" }}>Next</div>);
-  if (activeSection === sections.length - 1) make = (<div onClick={saveData} className='myBtn'>Build</div>);
-  else make = (<div className='myBtn' style={{ "pointerEvents": "none", "opacity": "0.5" }}>Build</div>);
+  if (activeSection > 0) prev = (<div className='myBtn' onClick={prevSection}>Prev</div>)
+  else prev = (<div className='myBtn' style={{ pointerEvents: 'none', opacity: '0.5' }}>Prev</div>)
+  if (activeSection >= 0 && activeSection < sections.length - 1) next = (<div className='myBtn' onClick={nextSection}>Next</div>)
+  else next = (<div className='myBtn' style={{ pointerEvents: 'none', opacity: '0.5' }}>Next</div>)
+  if (activeSection === sections.length - 1) make = (<div onClick={downloadPdf} className='myBtn'>Build</div>)
+  else make = (<div className='myBtn' style={{ pointerEvents: 'none', opacity: '0.5' }}>Build</div>)
 
   const sectionHandler = (name) => {
     setSections(sections.map((sec, i) => {
       if (sec.name === name) {
-        sec.active = true;
-        setActiveSection(i);
-      }
-      else if (sec.active) sec.active = false;
-      return sec;
-    }));
+        sec.active = true
+        setActiveSection(i)
+      } else if (sec.active) sec.active = false
+      return sec
+    }))
 
-    if (name === 'Templates') setSection((<Template templates={templates} handler={templateHandler} />));
+    if (name === 'Templates') setSection((<Template templates={templates} handler={templateHandler} />))
     else {
       setSection((<Section name={name} content={resume[name]} handler={contentHandler} />))
     }
   }
 
-  let more = (<div className='row-full'>
-    {prev}
-    {make}
-    {next}
-  </div>)
+  const more = (
+    <div className='row-full'>
+      {prev}
+      {make}
+      {next}
+    </div>
+  )
+
+  useEffect(() => {
+    setPdf('')
+  }, [style])
 
   return (
-    <div className="main">
+    <div className='main'>
       <Header />
       <div className='container'>
         <Sections sections={sections} btnHandler={sectionHandler} />
         {section}
+        <Preview loading={pdfLoading} pdf={pdf} resume={resume} template={style} />
       </div>
 
       <div className='footer'>
         {more}
       </div>
-    </div >
-  );
+    </div>
+  )
 }
 
-export default App;
+export default App

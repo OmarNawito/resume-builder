@@ -1,18 +1,18 @@
-import { Type } from "class-transformer";
-import { IsNotEmpty, IsString, IsArray, ValidateNested } from "class-validator";
+import { Type } from 'class-transformer';
+import { IsNotEmpty, IsString, IsArray, ValidateNested } from 'class-validator';
 
 export class UpdateSkillDto {
-	@ValidateNested({ each: true })
+  @ValidateNested({ each: true })
   @Type(() => UpdateSkill)
   skills: UpdateSkill[];
 }
 
 export class UpdateSkill {
-    @IsString()
-    @IsNotEmpty()
-    name: string
+  @IsString()
+  @IsNotEmpty()
+  name: string;
 
-    @IsArray()
-    @IsNotEmpty()
-    details: string[]
+  @IsArray()
+  @IsNotEmpty()
+  details: string[];
 }

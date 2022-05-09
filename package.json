@@ -29,7 +29,11 @@
     "@nestjs/platform-express": "^8.0.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
+    "html-pdf-node": "^1.0.8",
+    "html-pdf-node-ts": "^1.0.7",
+    "html-to-pdf": "^0.1.11",
     "mongoose": "^6.3.1",
+    "puppeteer": "^14.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"

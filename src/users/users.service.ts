@@ -9,7 +9,7 @@ export class UsersService {
   // constructor(
   //   @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
   // ) { }
-  
+
   create(createUserDto: CreateUserDto) {
     return 'This action adds a new user';
   }

@@ -8,25 +8,25 @@ export type ResumeDocument = Resume & Document;
 @Schema()
 export class Education {
   @Prop()
-  collegeName: string
+  collegeName: string;
 
   @Prop()
-  collegeLocation: string
+  collegeLocation: string;
 
   @Prop()
-  degree: string
+  degree: string;
 
   @Prop()
-  major: string
+  major: string;
 
   @Prop()
-  gpa: string
+  gpa: string;
 
   @Prop()
-  startDate: string
+  startDate: string;
 
   @Prop()
-  endDate: string
+  endDate: string;
 }
 
 const EducationSchema = SchemaFactory.createForClass(Education);
@@ -40,7 +40,7 @@ export class Experience {
   @Prop()
   jobLocation: string;
   @Prop()
-  jobResponsibilities: String[];
+  jobResponsibilities: string[];
   @Prop()
   startDate: string;
   @Prop()
@@ -66,7 +66,7 @@ export class Projects {
   @Prop()
   linkToProject: string;
   @Prop()
-  toolsUsed: String[];
+  toolsUsed: string[];
 }
 
 const ProjectsSchema = SchemaFactory.createForClass(Projects);
@@ -79,70 +79,72 @@ export class Awards {
   @Prop()
   awarder: string;
   @Prop()
-  summary: String;
+  summary: string;
 }
 
 const AwardsSchema = SchemaFactory.createForClass(Awards);
 
-@Schema({timestamps: true})
+@Schema({ timestamps: true })
 export class Resume extends Document {
-    @Prop({
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        default: null,
-      })
-      user?: User;
+  @Prop({
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    default: null,
+  })
+  user?: User;
 
-    @Prop({ required: true, type: String })
-    resumeId: string;
+  @Prop({ required: true, type: String })
+  resumeId: string;
 
-    @Prop({ required: true, type: String })
-    firstName: string;
+  @Prop({ required: true, type: String })
+  firstName: string;
 
-    @Prop({ required: true, type: String })
-    lastName: string;
+  @Prop({ required: true, type: String })
+  lastName: string;
 
-    @Prop({ required: true, type: String })
-    sureName: string;
-    
-    @Prop({ type: String, required: true })
-    email: string;
+  @Prop({ required: true, type: String })
+  sureName: string;
 
-    @Prop({ type: String, required: true })
-    city: string;
+  @Prop({ type: String, required: true })
+  email: string;
 
-    @Prop({ type: String, required: true })
-    country: string;
+  @Prop({ type: String, required: true })
+  city: string;
 
-    @Prop({ type: String, required: true })
-    zipCode: string;
+  @Prop({ type: String, required: true })
+  country: string;
 
-    @Prop({ type: String, required: true })
-    phone: string;
+  @Prop({ type: String, required: true })
+  zipCode: string;
 
-    @Prop({type: [EducationSchema], required: true })
-    educations: Education[];
+  @Prop({ type: String, required: true })
+  phone: string;
 
-    @Prop({type: [ExperienceSchema], required: true })
-    experiences: Experience[]
+  @Prop({ type: [EducationSchema], required: true })
+  educations: Education[];
 
-    @Prop({ type: [SkillsSchema], required: true})
-    skills: Skills[]
+  @Prop({ type: [ExperienceSchema], required: true })
+  experiences: Experience[];
 
-    @Prop({ type: [ProjectsSchema], required: true})
-    projects: Projects[]
-    
-    @Prop({ type: [AwardsSchema], required: true})
-    awards: Awards[]
+  @Prop({ type: [SkillsSchema], required: true })
+  skills: Skills[];
 
-    @Prop(raw({
-        linkedin: { type: String },
-        twitter: { type: String }
-      }))
-      social: Record<string, any>;
+  @Prop({ type: [ProjectsSchema], required: true })
+  projects: Projects[];
 
-    @Prop({ type: Date, default: Date.now })
-    date: Date;
+  @Prop({ type: [AwardsSchema], required: true })
+  awards: Awards[];
+
+  @Prop(
+    raw({
+      linkedin: { type: String },
+      twitter: { type: String },
+    }),
+  )
+  social: Record<string, any>;
+
+  @Prop({ type: Date, default: Date.now })
+  date: Date;
 }
 
 export const ResumeSchema = SchemaFactory.createForClass(Resume);

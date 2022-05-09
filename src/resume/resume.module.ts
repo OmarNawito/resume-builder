@@ -5,10 +5,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Resume, ResumeSchema } from './entities/resume.entity';
 
 @Module({
-  imports:[
-    MongooseModule.forFeature([{ name: Resume.name, schema: ResumeSchema}]),
+  imports: [
+    MongooseModule.forFeature([{ name: Resume.name, schema: ResumeSchema }]),
   ],
   controllers: [ResumeController],
-  providers: [ResumeService]
+  providers: [ResumeService],
 })
 export class ResumeModule {}

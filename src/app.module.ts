@@ -16,18 +16,17 @@ import { ResumeModule } from './resume/resume.module';
       ignoreEnvFile: false,
       isGlobal: true,
       cache: true,
-  }),
-  MongooseModule.forRootAsync({
-    inject: [DatabaseService],
-    imports: [DatabaseModule],
-    useFactory: (databaseService: DatabaseService) =>
+    }),
+    MongooseModule.forRootAsync({
+      inject: [DatabaseService],
+      imports: [DatabaseModule],
+      useFactory: (databaseService: DatabaseService) =>
         databaseService.createMongooseOptions(),
-}),
-  UsersModule,
-  ResumeModule,
+    }),
+    UsersModule,
+    ResumeModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-
 export class AppModule {}
