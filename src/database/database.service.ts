@@ -28,7 +28,6 @@ export class DatabaseService implements MongooseOptionsFactory {
   }
 
   createMongooseOptions(): MongooseModuleOptions {
-    console.log('eshtaaaaaaaaaaaaaaaaaa');
     let uri = `${this.host}`;
 
     if (this.database) {
@@ -48,7 +47,6 @@ export class DatabaseService implements MongooseOptionsFactory {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       serverSelectionTimeoutMS: 5000,
-      // useMongoClient: true
     };
 
     if (this.user && this.password) {
@@ -57,8 +55,6 @@ export class DatabaseService implements MongooseOptionsFactory {
         password: this.password,
       };
     }
-    // console.log("mongooseOptions", mongooseOptions)
-    // mongoose.connect(mongooseOptions.uri).then(() => console.log("connected"))
     return mongooseOptions;
   }
 }

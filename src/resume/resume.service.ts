@@ -10,83 +10,141 @@ import { Model } from 'mongoose';
 import { UpdateEducationDto } from './dto/update-education.dto';
 import * as fs from 'fs';
 import * as pdf from 'html-pdf-node-ts';
+import { ReqResLogService } from 'src/req-response-log/req-response-log.service';
+import { Request, Response } from 'express';
 
 @Injectable()
 export class ResumeService {
   constructor(
     @InjectModel(Resume.name) private resumeModel: Model<ResumeDocument>,
+    private readonly logService: ReqResLogService
   ) {}
 
   async updatePersonalDetails(
     id: string,
     updatePersonalDetailsDto: UpdatePersonalDetailsDto,
+    req: Request,
   ) {
     try {
-      return await this.resumeModel.findOneAndUpdate(
+      const personalDetails = await this.resumeModel.findOneAndUpdate(
         { resumeId: id },
         { $set: updatePersonalDetailsDto },
         { upsert: true, new: true },
       );
+      this.logService.emitEvent('asyncLogging', {
+        resumeId: id,
+        request: {
+            headers: req.headers,
+            body: req.body
+        },
+        response: {...personalDetails}     
+    })
+    return personalDetails
     } catch (error) {
       throw new InternalServerErrorException(error);
     }
   }
 
-  async updateEducation(id: string, updateEducationDto: UpdateEducationDto) {
+  async updateEducation(id: string, updateEducationDto: UpdateEducationDto, req) {
     try {
-      return await this.resumeModel.findOneAndUpdate(
+      const educations = await this.resumeModel.findOneAndUpdate(
         { resumeId: id },
         { $set: updateEducationDto },
         { upsert: true, new: true },
       );
+      this.logService.emitEvent('asyncLogging', {
+        resumeId: id,
+        request: {
+            headers: req.headers,
+            body: req.body
+        },
+        response: {...educations}     
+    })
+    return educations
     } catch (error) {
       throw new InternalServerErrorException(error);
     }
   }
 
-  async updateExperience(id: string, updateExperienceDto: UpdateExperienceDto) {
+  async updateExperience(id: string, updateExperienceDto: UpdateExperienceDto, req: Request) {
     try {
-      return await this.resumeModel.findOneAndUpdate(
+      const experiences =  await this.resumeModel.findOneAndUpdate(
         { resumeId: id },
         { $set: updateExperienceDto },
         { upsert: true, new: true },
       );
+      this.logService.emitEvent('asyncLogging', {
+        resumeId: id,
+        request: {
+            headers: req.headers,
+            body: req.body
+        },
+        response: {...experiences}     
+    })
+    return experiences
     } catch (error) {
       throw new InternalServerErrorException(error);
     }
   }
 
-  async updateSkill(id: string, updateSkillDto: UpdateSkillDto) {
+  async updateSkill(id: string, updateSkillDto: UpdateSkillDto, req: Request) {
     try {
-      return await this.resumeModel.findOneAndUpdate(
+      const skills =  await this.resumeModel.findOneAndUpdate(
         { resumeId: id },
         { $set: updateSkillDto },
         { upsert: true, new: true },
       );
+      this.logService.emitEvent('asyncLogging', {
+        resumeId: id,
+        request: {
+            headers: req.headers,
+            body: req.body
+        },
+        response: {...skills}     
+    })
+    return skills
     } catch (error) {
       throw new InternalServerErrorException(error);
     }
   }
 
-  async updateProject(id: string, updateProjectsDto: UpdateProjectsDto) {
+  async updateProject(id: string, updateProjectsDto: UpdateProjectsDto, req: Request) {
     try {
-      return await this.resumeModel.findOneAndUpdate(
+      const projects =  await this.resumeModel.findOneAndUpdate(
         { resumeId: id },
         { $set: updateProjectsDto },
         { upsert: true, new: true },
       );
+      this.logService.emitEvent('asyncLogging', {
+        resumeId: id,
+        request: {
+            headers: req.headers,
+            body: req.body
+        },
+        response: {...projects}     
+    })
+      return projects;
     } catch (error) {
       throw new InternalServerErrorException(error);
     }
   }
 
-  async updateAwards(id: string, updateAwardsDto: UpdateAwardsDto) {
+  async updateAwards(id: string, updateAwardsDto: UpdateAwardsDto, req: Request) {
     try {
-      return await this.resumeModel.findOneAndUpdate(
+      const awards = await this.resumeModel.findOneAndUpdate(
         { resumeId: id },
         { $set: updateAwardsDto },
         { upsert: true, new: true },
       );
+      this.logService.emitEvent('asyncLogging', {
+        resumeId: id,
+        request: {
+            headers: req.headers,
+            body: req.body
+        },
+        response: {...awards}     
+    })
+      return awards;
     } catch (error) {
       throw new InternalServerErrorException(error);
     }

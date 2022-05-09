@@ -10,6 +10,7 @@ import {
   Res,
   StreamableFile,
   Header,
+  Req,
 } from '@nestjs/common';
 import { ResumeService } from './resume.service';
 import { UpdatePersonalDetailsDto } from './dto/update-personalDetails.dto';
@@ -19,6 +20,7 @@ import { UpdateProjectsDto } from './dto/update-projects.dto';
 import { createReadStream } from 'fs';
 import { join } from 'path';
 import { ApiResponse } from '@nestjs/swagger';
+import { Request, Response } from 'express';
 
 @Controller('resume')
 export class ResumeController {
@@ -29,10 +31,12 @@ export class ResumeController {
   updatePersonalDetails(
     @Param('id') id: string,
     @Body() updatePersonalDetailsDto: UpdatePersonalDetailsDto,
+    @Req() req: Request
   ) {
     return this.resumeService.updatePersonalDetails(
       id,
       updatePersonalDetailsDto,
+      req,
     );
   }
 
@@ -41,8 +45,9 @@ export class ResumeController {
   updateEducation(
     @Param('id') id: string,
     @Body() updateEducationDto: UpdateEducationDto,
+    @Req() req: Request
   ) {
-    return this.resumeService.updateEducation(id, updateEducationDto);
+    return this.resumeService.updateEducation(id, updateEducationDto, req);
   }
 
   @Patch('experience/:id')
@@ -50,8 +55,9 @@ export class ResumeController {
   updateExperience(
     @Param('id') id: string,
     @Body() updateExperienceDto: UpdateExperienceDto,
+    @Req() req: Request
   ) {
-    return this.resumeService.updateExperience(id, updateExperienceDto);
+    return this.resumeService.updateExperience(id, updateExperienceDto, req);
   }
 
   @Patch('skills/:id')
@@ -59,8 +65,9 @@ export class ResumeController {
   updateSkills(
     @Param('id') id: string,
     @Body() updateSkillDto: UpdateSkillDto,
+    @Req() req: Request
   ) {
-    return this.resumeService.updateSkill(id, updateSkillDto);
+    return this.resumeService.updateSkill(id, updateSkillDto, req);
   }
 
   @Patch('projects/:id')
@@ -68,8 +75,9 @@ export class ResumeController {
   updateProjects(
     @Param('id') id: string,
     @Body() updateProjectsDto: UpdateProjectsDto,
+    @Req() req: Request
   ) {
-    return this.resumeService.updateProject(id, updateProjectsDto);
+    return this.resumeService.updateProject(id, updateProjectsDto, req);
   }
 
   @Patch('awards/:id')
@@ -77,8 +85,9 @@ export class ResumeController {
   updateAwards(
     @Param('id') id: string,
     @Body() updateAwardsDto: UpdateAwardsDto,
+    @Req() req: Request
   ) {
-    return this.resumeService.updateAwards(id, updateAwardsDto);
+    return this.resumeService.updateAwards(id, updateAwardsDto, req);
   }
 
   @Get()

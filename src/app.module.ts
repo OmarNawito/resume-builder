@@ -7,6 +7,10 @@ import Configs from 'src/config/index';
 import { DatabaseModule } from './database/database.module';
 import { DatabaseService } from './database/database.service';
 import { ResumeModule } from './resume/resume.module';
+import { LogsModule } from './logs/logs.module';
+import { WinstonModule } from 'nest-winston';
+import { WinstonConfigService } from './logs/winston.service';
+import { ReqResponseLogModule } from './req-response-log/req-response-log.module';
 
 @Module({
   imports: [
@@ -16,6 +20,10 @@ import { ResumeModule } from './resume/resume.module';
       isGlobal: true,
       cache: true,
     }),
+    WinstonModule.forRootAsync({
+      useClass: WinstonConfigService
+    }),
+    LogsModule,
     MongooseModule.forRootAsync({
       inject: [DatabaseService],
       imports: [DatabaseModule],
@@ -23,6 +31,8 @@ import { ResumeModule } from './resume/resume.module';
         databaseService.createMongooseOptions(),
     }),
     ResumeModule,
+    LogsModule,
+    ReqResponseLogModule,
   ],
   controllers: [AppController],
   providers: [AppService],
