@@ -255,6 +255,12 @@ function App() {
     },
   ])
 
+  useEffect( ()=>{
+    var data = localStorage.getItem('Resume');
+    if (data) setResume(JSON.parse(data));
+  }, []
+)
+
   const contentHandler = (content) => {
     resume[content.name] = content
     setResume(resume)
@@ -315,6 +321,7 @@ function App() {
   if (!resumeID) {
     setResumeID(Math.random().toString(16).slice(-4))
   }
+
 
   const nextSection = async () => {
     if (activeSection < sections.length - 1) {
@@ -387,23 +394,30 @@ function App() {
             projects: ProjectData,
           })
           break
-        case 6:
-          const awards = JSON.parse(JSON.stringify(resume.Projects.sections)).map(
-            (entry) => {
-              for (const key of Object.keys(entry)) {
-                entry[key] = entry[key].value
-              }
-              return entry
-            },
-          )
-          await axios.patch(`/resume/projects/${resumeID}`, { awards })
-          break
         default:
           break
       }
     }
   }
 
+  const build = () => {
+    console.log("Building..");
+    localStorage.setItem('Resume', JSON.stringify(resume));
+  }
+
+  const sendAward = async () => {
+    sectionHandler(sections[6].name)
+    const awards = JSON.parse(JSON.stringify(resume.Awards.sections)).map(
+      (entry) => {
+        for (const key of Object.keys(entry)) {
+          entry[key] = entry[key].value
+        }
+        return entry
+      },
+    )
+    const test = await axios.patch(`/resume/projects/${resumeID}`, { awards })
+    console.log(test)
+  }
   const prevSection = () => {
     if (activeSection > 0) {
       setActiveSection(activeSection - 1)
@@ -415,7 +429,7 @@ function App() {
     <Template templates={templates} handler={templateHandler} />,
   )
 
-  let prev, next, make
+  let prev, next, make, finish
 
   if (activeSection > 0) {
     prev = (
@@ -430,12 +444,14 @@ function App() {
       </div>
     )
   }
-  if (activeSection >= 0 && activeSection <= sections.length - 1) {
+  if (activeSection >= 0 && activeSection < sections.length - 1) {
     next = (
       <div className="myBtn" onClick={nextSection}>
         Next
       </div>
     )
+  } else if (activeSection <= sections.length - 1) {
+    finish = <div className="myBtn" onClick={sendAward}>Finish</div>
   } else {
     next = (
       <div className="myBtn" style={{ pointerEvents: 'none', opacity: '0.5' }}>
@@ -477,9 +493,11 @@ function App() {
 
   const more = (
     <div className="row-full">
+      <div onClick={build} className='myBtn'>Save</div>
       {prev}
       {make}
       {next}
+      {finish}
     </div>
   )
 

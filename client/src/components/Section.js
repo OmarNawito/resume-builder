@@ -53,9 +53,6 @@ const LabelInput = (props) => {
       />
     )
   }
-
-  // console.log(input, add, del, props.value);
-
   return (
     <div className="labelInput">
       <label>{props.name}</label>
@@ -67,7 +64,6 @@ const LabelInput = (props) => {
 
 const SectionData = (props) => {
   const rener = props.inputs.map((item, i) => {
-    console.log('item', item)
     return (
       <LabelInput
         key={i}
@@ -95,8 +91,6 @@ const Section = (props) => {
   for (let i = 0; i < props.content.sections.length; i++) {
     const section = props.content.sections[i]
     const keys = Object.keys(section)
-    console.log('Keys', keys)
-    console.log('Section', section)
     const h = []
 
     for (let j = 0; j < keys.length; j++) {
