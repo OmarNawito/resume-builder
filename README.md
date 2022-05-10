@@ -275,18 +275,18 @@ Set the header as follows:
 # TODO
 ## BACKEND
 
-- [x] Add Authentication Module
-- [x] Cache Resume Data Using Redis
-- [x] Handle PDF File name with Random String
-- [x] Send Resume By Email 
+- [ ] Add Authentication Module
+- [ ] Cache Resume Data Using Redis
+- [ ] Handle PDF File name with Random String
+- [ ] Send Resume By Email 
 
 ## CLIENT
 
-- [x] Get My Resumes
-- [x] Add Many Templates
-- [x] Add Custom Section 
-- [x] Render Updates in Preview Template  
-- [x] add Authentication Components
-- [x] Adding Date Picker 
-- [x] Make Resume Validation
-- [x] Add many Resumes 
+- [ ] Get My Resumes
+- [ ] Add Many Templates
+- [ ] Add Custom Section 
+- [ ] Render Updates in Preview Template  
+- [ ] add Authentication Components
+- [ ] Adding Date Picker 
+- [ ] Make Resume Validation
+- [ ] Add many Resumes 
