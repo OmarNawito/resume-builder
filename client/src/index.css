@@ -12,9 +12,9 @@ code {
 }
 
 .spinner-loader {
-  border: 7px solid whitesmoke; /* Light grey */
-  border-top: 7px solid skyblue; /* Blue */
-  border-bottom: 7px solid skyblue; /* Blue */
+  border: 7px solid whitesmoke;
+  border-top: 7px solid skyblue;
+  border-bottom: 7px solid skyblue;
   border-radius: 50%;
   width: 120px;
   height: 120px;

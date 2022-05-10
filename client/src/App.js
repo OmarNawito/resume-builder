@@ -401,7 +401,6 @@ function App() {
   }
 
   const build = () => {
-    console.log("Building..");
     localStorage.setItem('Resume', JSON.stringify(resume));
   }
 
