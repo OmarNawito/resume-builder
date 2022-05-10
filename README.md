@@ -4,7 +4,7 @@ This is a project done for Dalia interview. Please find the instructions [here](
 
 ## Teck Stack
 
-The project is build with [Nestjs](https://nestjs.com/). It uses [jest](https://jestjs.io/)
+The project is build with [Nestjs](https://nestjs.com/). It uses [jest](https://jestjs.io/) [mongo] (https://www.mongodb.com/) [react](https://reactjs.org/)
 ## 1. Getting started
 
 ### 1.1 Requirements
