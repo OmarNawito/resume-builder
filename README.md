@@ -1,10 +1,10 @@
 # Resume Builder Backend
 
-This is a project done for Dalia interview. Please find the instructions [here](https://github.com/OmarNawito/resume-builder.wiki.git).
+This is a project done for Dalia interview. Please find the instructions [here](https://github.com/OmarNawito/resume-builder/wiki/Dalia-Assignment#resume-builder-backend).
 
 ## Teck Stack
 
-The project is build with [Nestjs](https://nestjs.com/). It uses [jest](https://jestjs.io/)
+The project is build with [Nestjs](https://nestjs.com/). It uses [jest](https://jestjs.io/) [mongo](https://www.mongodb.com/) [react](https://reactjs.org/)
 ## 1. Getting started
 
 ### 1.1 Requirements
@@ -79,7 +79,11 @@ Using no sql database for testing
 
 Run `npm start test`
 
-## 1.6 Public API
+## 1.6 Swagger API docs
+
+Already integrated API documentation. To see all available endpoints visit http://localhost:4000/api
+
+## 1.7 Public API
 
 ### Update Personal Details
 
@@ -268,6 +272,21 @@ Set the header as follows:
 
 `200 OK`
 
-# Swagger API docs
+# TODO
+## BACKEND
 
-Already integrated API documentation. To see all available endpoints visit http://localhost:4000/api
+- [ ] Add Authentication Module
+- [ ] Cache Resume Data Using Redis
+- [ ] Handle PDF File name with Random String
+- [ ] Send Resume By Email 
+
+## CLIENT
+
+- [ ] Get My Resumes
+- [ ] Add Many Templates
+- [ ] Add Custom Section 
+- [ ] Render Updates in Preview Template  
+- [ ] add Authentication Components
+- [ ] Adding Date Picker 
+- [ ] Make Resume Validation
+- [ ] Add many Resumes 
