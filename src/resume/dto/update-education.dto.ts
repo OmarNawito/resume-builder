@@ -6,7 +6,7 @@ export class UpdateEducation {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "MUST",
+    example: 'MUST',
     type: String,
   })
   collegeName: string;
@@ -14,7 +14,7 @@ export class UpdateEducation {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "Standford, CA",
+    example: 'Standford, CA',
     type: String,
   })
   collegeLocation: string;
@@ -22,7 +22,7 @@ export class UpdateEducation {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "CS",
+    example: 'CS',
     type: String,
   })
   degree: string;
@@ -30,7 +30,7 @@ export class UpdateEducation {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "Computer Science",
+    example: 'Computer Science',
     type: String,
   })
   major: string;
@@ -38,7 +38,7 @@ export class UpdateEducation {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "5.5",
+    example: '5.5',
     type: String,
   })
   gpa: string;
@@ -46,7 +46,7 @@ export class UpdateEducation {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "June 2017",
+    example: 'June 2017',
     type: String,
   })
   startDate: string;
@@ -54,7 +54,7 @@ export class UpdateEducation {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "May 2021",
+    example: 'May 2021',
     type: String,
   })
   endDate: string;

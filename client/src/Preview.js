@@ -6,7 +6,7 @@ const Preview = (props) => {
 
   render = <Template1 pdf={props.pdf} loading={props.loading} resume={props.resume} />
 
-  return <div className="preview">{render}</div>
+  return <div className='preview'>{render}</div>
 }
 
 export default Preview

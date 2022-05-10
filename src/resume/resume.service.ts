@@ -10,20 +10,20 @@ import { Model } from 'mongoose';
 import { UpdateEducationDto } from './dto/update-education.dto';
 import * as fs from 'fs';
 import * as pdf from 'html-pdf-node-ts';
-import { ReqResLogService } from 'src/req-response-log/req-response-log.service';
+import { ReqResLogService } from '../req-response-log/req-response-log.service';
 import { Request, Response } from 'express';
 
 @Injectable()
 export class ResumeService {
   constructor(
     @InjectModel(Resume.name) private resumeModel: Model<ResumeDocument>,
-    private readonly logService: ReqResLogService
+    private readonly logService: ReqResLogService,
   ) {}
 
   async updatePersonalDetails(
     id: string,
     updatePersonalDetailsDto: UpdatePersonalDetailsDto,
-    req: Request,
+    req?: Request,
   ) {
     try {
       const personalDetails = await this.resumeModel.findOneAndUpdate(
@@ -31,44 +31,53 @@ export class ResumeService {
         { $set: updatePersonalDetailsDto },
         { upsert: true, new: true },
       );
-      this.logService.emitEvent('asyncLogging', {
-        resumeId: id,
-        request: {
-            headers: req.headers,
-            body: req.body
-        },
-        response: {...personalDetails}     
-    })
-    return personalDetails
+        this.logService.emitEvent('asyncLogging', {
+          resumeId: id,
+          request: {
+              headers: req && req.headers ? req.headers : '',
+              body: req && req.body ? req.body : '',
+          },
+          response: {...personalDetails}
+      })
+      return personalDetails;
     } catch (error) {
       throw new InternalServerErrorException(error);
     }
   }
 
-  async updateEducation(id: string, updateEducationDto: UpdateEducationDto, req) {
+  async updateEducation(
+    id: string,
+    updateEducationDto: UpdateEducationDto,
+    req? : Request,
+  ) {
     try {
       const educations = await this.resumeModel.findOneAndUpdate(
         { resumeId: id },
         { $set: updateEducationDto },
         { upsert: true, new: true },
       );
+
       this.logService.emitEvent('asyncLogging', {
         resumeId: id,
         request: {
-            headers: req.headers,
-            body: req.body
+          headers: req && req.headers ? req.headers : '',
+          body: req && req.body ? req.body : ''
         },
-        response: {...educations}     
-    })
-    return educations
+        response: { ...educations },
+      });
+      return educations;
     } catch (error) {
       throw new InternalServerErrorException(error);
     }
   }
 
-  async updateExperience(id: string, updateExperienceDto: UpdateExperienceDto, req: Request) {
+  async updateExperience(
+    id: string,
+    updateExperienceDto: UpdateExperienceDto,
+    req: Request,
+  ) {
     try {
-      const experiences =  await this.resumeModel.findOneAndUpdate(
+      const experiences = await this.resumeModel.findOneAndUpdate(
         { resumeId: id },
         { $set: updateExperienceDto },
         { upsert: true, new: true },
@@ -76,12 +85,12 @@ export class ResumeService {
       this.logService.emitEvent('asyncLogging', {
         resumeId: id,
         request: {
-            headers: req.headers,
-            body: req.body
+          headers: req.headers,
+          body: req.body,
         },
-        response: {...experiences}     
-    })
-    return experiences
+        response: { ...experiences },
+      });
+      return experiences;
     } catch (error) {
       throw new InternalServerErrorException(error);
     }
@@ -89,7 +98,7 @@ export class ResumeService {
 
   async updateSkill(id: string, updateSkillDto: UpdateSkillDto, req: Request) {
     try {
-      const skills =  await this.resumeModel.findOneAndUpdate(
+      const skills = await this.resumeModel.findOneAndUpdate(
         { resumeId: id },
         { $set: updateSkillDto },
         { upsert: true, new: true },
@@ -97,20 +106,24 @@ export class ResumeService {
       this.logService.emitEvent('asyncLogging', {
         resumeId: id,
         request: {
-            headers: req.headers,
-            body: req.body
+          headers: req.headers,
+          body: req.body,
         },
-        response: {...skills}     
-    })
-    return skills
+        response: { ...skills },
+      });
+      return skills;
     } catch (error) {
       throw new InternalServerErrorException(error);
     }
   }
 
-  async updateProject(id: string, updateProjectsDto: UpdateProjectsDto, req: Request) {
+  async updateProject(
+    id: string,
+    updateProjectsDto: UpdateProjectsDto,
+    req: Request,
+  ) {
     try {
-      const projects =  await this.resumeModel.findOneAndUpdate(
+      const projects = await this.resumeModel.findOneAndUpdate(
         { resumeId: id },
         { $set: updateProjectsDto },
         { upsert: true, new: true },
@@ -118,18 +131,22 @@ export class ResumeService {
       this.logService.emitEvent('asyncLogging', {
         resumeId: id,
         request: {
-            headers: req.headers,
-            body: req.body
+          headers: req.headers,
+          body: req.body,
         },
-        response: {...projects}     
-    })
+        response: { ...projects },
+      });
       return projects;
     } catch (error) {
       throw new InternalServerErrorException(error);
     }
   }
 
-  async updateAwards(id: string, updateAwardsDto: UpdateAwardsDto, req: Request) {
+  async updateAwards(
+    id: string,
+    updateAwardsDto: UpdateAwardsDto,
+    req: Request,
+  ) {
     try {
       const awards = await this.resumeModel.findOneAndUpdate(
         { resumeId: id },
@@ -139,11 +156,11 @@ export class ResumeService {
       this.logService.emitEvent('asyncLogging', {
         resumeId: id,
         request: {
-            headers: req.headers,
-            body: req.body
+          headers: req.headers,
+          body: req.body,
         },
-        response: {...awards}     
-    })
+        response: { ...awards },
+      });
       return awards;
     } catch (error) {
       throw new InternalServerErrorException(error);
@@ -158,10 +175,9 @@ export class ResumeService {
       console.log(err.message);
     }
   }
-  async resumePdf(style: string, resume: string, res) {
+  async resumePdf(style: string, resume: string, res?: Response) {
     try {
       const resumeHTML = `<html><head><style>${style}</style></head><body>${resume}</body></html>`;
-      console.log('resumeHTML', resumeHTML, __dirname + '/Resumes');
       fs.writeFileSync(__dirname + '/Resumes/resume.html', resumeHTML);
       const fileData = fs.readFileSync(
         __dirname + '/Resumes/resume.html',

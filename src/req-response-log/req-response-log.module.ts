@@ -5,12 +5,11 @@ import { Log, LogSchema } from './entities/log.schema';
 import { ReqResLogService } from './req-response-log.service';
 
 @Module({
-    imports: 
-    [
-        EventEmitterModule.forRoot(),
-        MongooseModule.forFeature([{ name: Log.name, schema: LogSchema }]),
-    ],
-    providers: [ReqResLogService],
-    exports:[ReqResLogService]
+  imports: [
+    EventEmitterModule.forRoot(),
+    MongooseModule.forFeature([{ name: Log.name, schema: LogSchema }]),
+  ],
+  providers: [ReqResLogService],
+  exports: [ReqResLogService],
 })
 export class ReqResponseLogModule {}

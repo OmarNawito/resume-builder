@@ -2,12 +2,11 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsNotEmpty, IsString, IsArray, ValidateNested } from 'class-validator';
 
-
 export class UpdateSkill {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "programming",
+    example: 'programming',
     type: String,
   })
   name: string;
@@ -15,7 +14,7 @@ export class UpdateSkill {
   @IsArray()
   @IsNotEmpty()
   @ApiProperty({
-    example: "JavaScript",
+    example: 'JavaScript',
     type: String,
   })
   details: string[];

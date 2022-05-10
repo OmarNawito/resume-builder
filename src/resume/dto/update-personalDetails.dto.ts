@@ -5,63 +5,63 @@ export class UpdatePersonalDetailsDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "Omar",
+    example: 'Omar',
   })
   firstName: string;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "Nawito",
+    example: 'Nawito',
   })
   lastName: string;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "Nawito",
+    example: 'Nawito',
   })
   sureName: string;
 
   @IsEmail()
   @IsNotEmpty()
   @ApiProperty({
-    example: "o_mohsen@hotmail.com",
+    example: 'o_mohsen@hotmail.com',
   })
   email: string;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "6 october",
+    example: '6 october',
   })
   address: string;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "6 october",
+    example: '6 october',
   })
   city: string;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "Egypt",
+    example: 'Egypt',
   })
   country: string;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "01155907333",
+    example: '01155907333',
   })
   phone: string;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "12345",
+    example: '12345',
   })
   zipCode: string;
 }

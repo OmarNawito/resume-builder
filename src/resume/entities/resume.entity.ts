@@ -104,6 +104,9 @@ export class Resume extends Document {
   city: string;
 
   @Prop({ type: String, required: true })
+  address: string;
+
+  @Prop({ type: String, required: true })
   country: string;
 
   @Prop({ type: String, required: true })

@@ -17,14 +17,14 @@ const LabelInput = (props) => {
   if (Array.isArray(props.value)) {
     if (props.value.length > 1) {
       del = (
-        <div onClick={deleteSection} className="myBtnDel">
+        <div onClick={deleteSection} className='myBtnDel'>
           Delete
         </div>
       )
     }
     add = (
-      <div className="row">
-        <div onClick={addSection} className="myBtn">
+      <div className='row'>
+        <div onClick={addSection} className='myBtn'>
           Add
         </div>
         {del}
@@ -35,7 +35,7 @@ const LabelInput = (props) => {
         <input
           key={i}
           placeholder={props.placeHolder}
-          className="form-control"
+          className='form-control'
           value={item}
           name={props.name}
           onChange={(e) => props.onChangeHandler(props.changeKey, e.target.value, i)}
@@ -46,7 +46,7 @@ const LabelInput = (props) => {
     input = (
       <input
         placeholder={props.placeHolder}
-        className="form-control"
+        className='form-control'
         value={props.value}
         name={props.name}
         onChange={(e) => props.onChangeHandler(props.changeKey, e.target.value)}
@@ -57,7 +57,7 @@ const LabelInput = (props) => {
   // console.log(input, add, del, props.value);
 
   return (
-    <div className="labelInput">
+    <div className='labelInput'>
       <label>{props.name}</label>
       {input}
       {add}
@@ -82,7 +82,7 @@ const SectionData = (props) => {
   })
 
   return (
-    <div className="subSection">
+    <div className='subSection'>
       {rener}
       <hr />
     </div>
@@ -106,7 +106,7 @@ const Section = (props) => {
         value: section[keys[j]].value,
         type: section[keys[j]].type,
         required: section[keys[j]].required,
-        onChange: { index: i, key: keys[j] },
+        onChange: { index: i, key: keys[j] }
       })
     }
     helper.push(h)
@@ -148,7 +148,7 @@ const Section = (props) => {
 
   if (props.content.sections.length > 1) {
     del = (
-      <div onClick={deleteSection} className="myBtnDel">
+      <div onClick={deleteSection} className='myBtnDel'>
         Delete
       </div>
     )
@@ -156,8 +156,8 @@ const Section = (props) => {
 
   if (props.content.extra) {
     add = (
-      <div className="rowSub">
-        <div onClick={addSection} className="myBtn">
+      <div className='rowSub'>
+        <div onClick={addSection} className='myBtn'>
           Add
         </div>
         {del}
@@ -166,16 +166,16 @@ const Section = (props) => {
   }
 
   return (
-    <div id="CustomSection" className="customSeciton">
+    <div id='CustomSection' className='customSeciton'>
       <h3>{'Your ' + props.name}</h3>
-      <div className="labelInput">
+      <div className='labelInput'>
         <label>Section Heading</label>
         <input
-          className="form-control"
+          className='form-control'
           value={props.content.heading}
           onChange={headHandler}
-          type="text"
-          name="heading"
+          type='text'
+          name='heading'
         />
       </div>
       <hr />

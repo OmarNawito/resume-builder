@@ -27,11 +27,11 @@ export class ResumeController {
   constructor(private readonly resumeService: ResumeService) {}
 
   @Patch('personal-details/:id')
-  @ApiResponse({ status: 200, type: UpdatePersonalDetailsDto})
+  @ApiResponse({ status: 200, type: UpdatePersonalDetailsDto })
   updatePersonalDetails(
     @Param('id') id: string,
     @Body() updatePersonalDetailsDto: UpdatePersonalDetailsDto,
-    @Req() req: Request
+    @Req() req: Request,
   ) {
     return this.resumeService.updatePersonalDetails(
       id,
@@ -41,51 +41,51 @@ export class ResumeController {
   }
 
   @Patch('education/:id')
-  @ApiResponse({ status: 200, type: UpdateEducationDto})
+  @ApiResponse({ status: 200, type: UpdateEducationDto })
   updateEducation(
     @Param('id') id: string,
     @Body() updateEducationDto: UpdateEducationDto,
-    @Req() req: Request
+    @Req() req: Request,
   ) {
     return this.resumeService.updateEducation(id, updateEducationDto, req);
   }
 
   @Patch('experience/:id')
-  @ApiResponse({ status: 200, type: UpdateExperienceDto})
+  @ApiResponse({ status: 200, type: UpdateExperienceDto })
   updateExperience(
     @Param('id') id: string,
     @Body() updateExperienceDto: UpdateExperienceDto,
-    @Req() req: Request
+    @Req() req: Request,
   ) {
     return this.resumeService.updateExperience(id, updateExperienceDto, req);
   }
 
   @Patch('skills/:id')
-  @ApiResponse({ status: 200, type: UpdateSkillDto})
+  @ApiResponse({ status: 200, type: UpdateSkillDto })
   updateSkills(
     @Param('id') id: string,
     @Body() updateSkillDto: UpdateSkillDto,
-    @Req() req: Request
+    @Req() req: Request,
   ) {
     return this.resumeService.updateSkill(id, updateSkillDto, req);
   }
 
   @Patch('projects/:id')
-  @ApiResponse({ status: 200, type: UpdateProjectsDto})
+  @ApiResponse({ status: 200, type: UpdateProjectsDto })
   updateProjects(
     @Param('id') id: string,
     @Body() updateProjectsDto: UpdateProjectsDto,
-    @Req() req: Request
+    @Req() req: Request,
   ) {
     return this.resumeService.updateProject(id, updateProjectsDto, req);
   }
 
   @Patch('awards/:id')
-  @ApiResponse({ status: 200, type: UpdateAwardsDto})
+  @ApiResponse({ status: 200, type: UpdateAwardsDto })
   updateAwards(
     @Param('id') id: string,
     @Body() updateAwardsDto: UpdateAwardsDto,
-    @Req() req: Request
+    @Req() req: Request,
   ) {
     return this.resumeService.updateAwards(id, updateAwardsDto, req);
   }

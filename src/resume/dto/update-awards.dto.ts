@@ -2,12 +2,11 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsNotEmpty, IsString, ValidateNested } from 'class-validator';
 
-
 export class UpdateAward {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "Front-end Developer",
+    example: 'Front-end Developer',
     type: String,
   })
   name: string;
@@ -15,7 +14,7 @@ export class UpdateAward {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "Sep 2020",
+    example: 'Sep 2020',
     type: String,
   })
   date: string;
@@ -23,7 +22,7 @@ export class UpdateAward {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "FreeCodeCamp",
+    example: 'FreeCodeCamp',
     type: String,
   })
   awarder: string;
@@ -31,7 +30,8 @@ export class UpdateAward {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "Rewarded for learning and contributing to the open source community.",
+    example:
+      'Rewarded for learning and contributing to the open source community.',
     type: String,
   })
   summary: string;

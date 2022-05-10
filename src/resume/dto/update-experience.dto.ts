@@ -6,7 +6,7 @@ export class UpdateExperience {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "Google",
+    example: 'Google',
     type: String,
   })
   companyName: string;
@@ -14,7 +14,7 @@ export class UpdateExperience {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "Software Engineer",
+    example: 'Software Engineer',
     type: String,
   })
   jobTitle: string;
@@ -22,7 +22,7 @@ export class UpdateExperience {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "SMountain View, CA",
+    example: 'SMountain View, CA',
     type: String,
   })
   jobLocation: string;
@@ -30,7 +30,7 @@ export class UpdateExperience {
   @IsArray()
   @IsNotEmpty()
   @ApiProperty({
-    example: "Software Engineer",
+    example: 'Software Engineer',
     type: [String],
   })
   jobResponsibilities: string[];
@@ -38,7 +38,7 @@ export class UpdateExperience {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "Jun 2020",
+    example: 'Jun 2020',
     type: String,
   })
   startDate: string;
@@ -46,7 +46,7 @@ export class UpdateExperience {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "May 2021",
+    example: 'May 2021',
     type: String,
   })
   endDate: string;

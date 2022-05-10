@@ -3,7 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
-import Configs from 'src/config/index';
+import Configs from './config/index';
 import { DatabaseModule } from './database/database.module';
 import { DatabaseService } from './database/database.service';
 import { ResumeModule } from './resume/resume.module';
@@ -21,7 +21,7 @@ import { ReqResponseLogModule } from './req-response-log/req-response-log.module
       cache: true,
     }),
     WinstonModule.forRootAsync({
-      useClass: WinstonConfigService
+      useClass: WinstonConfigService,
     }),
     LogsModule,
     MongooseModule.forRootAsync({
@@ -32,7 +32,7 @@ import { ReqResponseLogModule } from './req-response-log/req-response-log.module
     }),
     ResumeModule,
     LogsModule,
-    ReqResponseLogModule,
+    ReqResponseLogModule
   ],
   controllers: [AppController],
   providers: [AppService],

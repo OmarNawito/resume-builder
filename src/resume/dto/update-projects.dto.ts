@@ -2,12 +2,11 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsArray, IsNotEmpty, IsString, ValidateNested } from 'class-validator';
 
-
 export class UpdateProjects {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "Chat App",
+    example: 'Chat App',
     type: String,
   })
   name: string;
@@ -15,7 +14,7 @@ export class UpdateProjects {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "Online Chat App",
+    example: 'Online Chat App',
     type: String,
   })
   description: string;
@@ -23,7 +22,7 @@ export class UpdateProjects {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: "https://project.com",
+    example: 'https://project.com',
     type: String,
   })
   linkToProject: string;
@@ -31,7 +30,7 @@ export class UpdateProjects {
   @IsArray()
   @IsNotEmpty()
   @ApiProperty({
-    example: "https://project.com",
+    example: 'https://project.com',
     type: [String],
   })
   toolsUsed: string[];
