@@ -79,11 +79,11 @@ Using no sql database for testing
 
 Run `npm start test`
 
-## Swagger API docs
+## 1.6 Swagger API docs
 
 Already integrated API documentation. To see all available endpoints visit http://localhost:4000/api
 
-## 1.6 Public API
+## 1.7 Public API
 
 ### Update Personal Details
 
@@ -271,3 +271,22 @@ Set the header as follows:
 ##### Success
 
 `200 OK`
+
+# TODO
+## BACKEND
+
+- [x] Add Authentication Module
+- [x] Cache Resume Data Using Redis
+- [x] Handle PDF File name with Random String
+- [x] Send Resume By Email 
+
+## CLIENT
+
+- [x] Get My Resumes
+- [x] Add Many Templates
+- [x] Add Custom Section 
+- [x] Render Updates in Preview Template  
+- [x] add Authentication Components
+- [x] Adding Date Picker 
+- [x] Make Resume Validation
+- [x] Add many Resumes 
