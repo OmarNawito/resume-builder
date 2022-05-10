@@ -1,6 +1,6 @@
 # Resume Builder Backend
 
-This is a project done for Dalia interview. Please find the instructions [here](https://github.com/OmarNawito/resume-builder.wiki.git).
+This is a project done for Dalia interview. Please find the instructions [here](https://github.com/OmarNawito/resume-builder/wiki/Dalia-Assignment#resume-builder-backend).
 
 ## Teck Stack
 
