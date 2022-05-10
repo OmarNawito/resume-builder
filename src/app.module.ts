@@ -32,7 +32,7 @@ import { ReqResponseLogModule } from './req-response-log/req-response-log.module
     }),
     ResumeModule,
     LogsModule,
-    ReqResponseLogModule
+    ReqResponseLogModule,
   ],
   controllers: [AppController],
   providers: [AppService],

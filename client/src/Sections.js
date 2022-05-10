@@ -1,16 +1,16 @@
 import React from 'react'
 
 const Sections = (props) => {
-  function MyButton (props) {
+  function MyButton(props) {
     if (props.isActive) {
       return (
-        <div className='myBtnActive' onClick={() => props.clickHandler(props.name)}>
+        <div className="myBtnActive" onClick={() => props.clickHandler(props.name)}>
           {props.name}
         </div>
       )
     } else {
       return (
-        <div className='myBtn' onClick={() => props.clickHandler(props.name)}>
+        <div className="myBtn" onClick={() => props.clickHandler(props.name)}>
           {props.name}
         </div>
       )
@@ -28,12 +28,12 @@ const Sections = (props) => {
     )
   })
   return (
-    <div className='sections'>
+    <div className="sections">
       {btns}
       <hr />
       <MyButton
-        name='Build'
-        key='Build'
+        name="Build"
+        key="Build"
         clickHandler={props.buildPdf}
         isActive={props.buildStepActive}
       />

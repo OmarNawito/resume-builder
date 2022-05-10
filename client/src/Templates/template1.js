@@ -10,156 +10,156 @@ const Style =
 const Render = (resume) => {
   const render = []
   render.push(
-    <div id='profile'>
-      <div className='user_name'>
+    <div id="profile">
+      <div className="user_name">
         {resume.Profile.sections[0].firstName.value}{' '}
         {resume.Profile.sections[0].lastName.value}
       </div>
-      <div className='user_name'>{resume.Profile.sections[0].sureName.value}</div>
-      <div className='row_close'>
-        <div className='Address'>{resume.Profile.sections[0].Address.value}</div>
+      <div className="user_name">{resume.Profile.sections[0].sureName.value}</div>
+      <div className="row_close">
+        <div className="Address">{resume.Profile.sections[0].Address.value}</div>
         <span>.</span>
-        <div className='Email'>{resume.Profile.sections[0].Email.value}</div>
+        <div className="Email">{resume.Profile.sections[0].Email.value}</div>
         <span>.</span>
-        <div className='Phone'>{resume.Profile.sections[0].phone.value}</div>
-        <div className='zipCode'>{resume.Profile.sections[0].zipCode.value}</div>
-        <div className='Country'>{resume.Profile.sections[0].Country.value}</div>
-        <div className='City'>{resume.Profile.sections[0].City.value}</div>
-        <div className='Address'>{resume.Profile.sections[0].Address.value}</div>
+        <div className="Phone">{resume.Profile.sections[0].phone.value}</div>
+        <div className="zipCode">{resume.Profile.sections[0].zipCode.value}</div>
+        <div className="Country">{resume.Profile.sections[0].Country.value}</div>
+        <div className="City">{resume.Profile.sections[0].City.value}</div>
+        <div className="Address">{resume.Profile.sections[0].Address.value}</div>
       </div>
       {/* <div className='row_close'>
                         <div className="Portfolio">{resume.Profile.sections[0].Portfolio.value}</div><span>.</span>
                         <div className="LinkedIn">{resume.Profile.sections[0].LinkedIn.value}</div>
                     </div> */}
-    </div>
+    </div>,
   )
 
   render.push(
-    <div id='education'>
-      <div className='Heading'>{resume.Education.heading}</div>
+    <div id="education">
+      <div className="Heading">{resume.Education.heading}</div>
       {resume.Education.sections.map((section) => {
         return (
-          <div className='row_far pageBreak'>
-            <div className='column1'>
-              <div className='collegeName'>{section.collegeName.value}</div>
-              <div className='row_close'>
-                <div className='degree'>{section.degree.value}</div>
+          <div className="row_far pageBreak">
+            <div className="column1">
+              <div className="collegeName">{section.collegeName.value}</div>
+              <div className="row_close">
+                <div className="degree">{section.degree.value}</div>
                 <span />
-                <div className='major'>{section.major.value}</div>
+                <div className="major">{section.major.value}</div>
                 <span />
-                <div className='gpa'>GPA: {section.gpa.value}</div>
+                <div className="gpa">GPA: {section.gpa.value}</div>
               </div>
             </div>
-            <div className='column2'>
-              <div className='collegeLocation'>{section.collegeLocation.value}</div>
-              <div className='row_close'>
-                <div className='startDate'>{section.startDate.value}</div>
+            <div className="column2">
+              <div className="collegeLocation">{section.collegeLocation.value}</div>
+              <div className="row_close">
+                <div className="startDate">{section.startDate.value}</div>
                 <span>-</span>
-                <div className='endDate'>{section.endDate.value}</div>
+                <div className="endDate">{section.endDate.value}</div>
               </div>
             </div>
           </div>
         )
       })}
-    </div>
+    </div>,
   )
   render.push(
-    <div id='work'>
-      <div className='Heading'>{resume.Work.heading}</div>
+    <div id="work">
+      <div className="Heading">{resume.Work.heading}</div>
       {resume.Work.sections.map((section) => {
         return (
-          <div className='column3 pageBreak'>
-            <div className='row_far'>
-              <div className='column1'>
-                <div className='companyName'>{section.companyName.value}</div>
-                <div className='jobTitle'>{section.jobTitle.value}</div>
+          <div className="column3 pageBreak">
+            <div className="row_far">
+              <div className="column1">
+                <div className="companyName">{section.companyName.value}</div>
+                <div className="jobTitle">{section.jobTitle.value}</div>
               </div>
-              <div className='column2'>
-                <div className='jobLocation'>{section.jobLocation.value}</div>
-                <div className='row_close'>
-                  <div className='startDate'>{section.startDate.value}</div>
+              <div className="column2">
+                <div className="jobLocation">{section.jobLocation.value}</div>
+                <div className="row_close">
+                  <div className="startDate">{section.startDate.value}</div>
                   <span>-</span>
-                  <div className='endDate'>{section.endDate.value}</div>
+                  <div className="endDate">{section.endDate.value}</div>
                 </div>
               </div>
             </div>
-            <ul className='job'>
+            <ul className="job">
               {section.jobResponsibilities.value.map((j) => {
-                return <li className='jr'>{j}</li>
+                return <li className="jr">{j}</li>
               })}
             </ul>
           </div>
         )
       })}
-    </div>
+    </div>,
   )
   render.push(
-    <div id='skills' className='pageBreak'>
-      <div className='Heading'>{resume.Skills.heading}</div>
+    <div id="skills" className="pageBreak">
+      <div className="Heading">{resume.Skills.heading}</div>
       {resume.Skills.sections.map((section) => {
         return (
-          <div className='row_far'>
-            <div className='skillName'>{section.name.value}:</div>
-            <div className='row_close'>
+          <div className="row_far">
+            <div className="skillName">{section.name.value}:</div>
+            <div className="row_close">
               {section.details.value.map((s, i) => {
                 if (i === section.details.value.length - 1) {
                   {
-                    return <div className='skillDetail'>{s}</div>
+                    return <div className="skillDetail">{s}</div>
                   }
-                } else return <div className='skillDetail'>{s},</div>
+                } else return <div className="skillDetail">{s},</div>
               })}
             </div>
           </div>
         )
       })}
-    </div>
+    </div>,
   )
   render.push(
-    <div id='projects'>
-      <div className='Heading'>{resume.Projects.heading}</div>
+    <div id="projects">
+      <div className="Heading">{resume.Projects.heading}</div>
       {resume.Projects.sections.map((section) => {
         return (
-          <div className='column4 pageBreak'>
-            <div className='row_close'>
-              <div className='projectName'>{section.name.value}</div>
-              <div className='row_close'>
+          <div className="column4 pageBreak">
+            <div className="row_close">
+              <div className="projectName">{section.name.value}</div>
+              <div className="row_close">
                 {section.toolsUsed.value.map((t, i) => {
                   if (i === section.toolsUsed.value.length - 1) {
-                    return <div className='toolsUsed'>{t},</div>
+                    return <div className="toolsUsed">{t},</div>
                   } else {
-                    return <div className='toolsUsed'>{t}</div>
+                    return <div className="toolsUsed">{t}</div>
                   }
                 })}
               </div>
             </div>
-            <div className='projectLink'>{section.linkToProject.value}</div>
-            <div className='projectDescription'>{section.description.value}</div>
+            <div className="projectLink">{section.linkToProject.value}</div>
+            <div className="projectDescription">{section.description.value}</div>
           </div>
         )
       })}
-    </div>
+    </div>,
   )
 
   render.push(
-    <div id='awards'>
-      <div className='Heading'>{resume.Awards.heading}</div>
-      <div className=''>
+    <div id="awards">
+      <div className="Heading">{resume.Awards.heading}</div>
+      <div className="">
         {resume.Awards.sections.map((section) => {
           return (
-            <div className='column4 pageBreak'>
-              <div className='row_far2'>
-                <div className='awardName'>{section.name.value}</div>
-                <div className='awarder'>{section.awarder.value}</div>
+            <div className="column4 pageBreak">
+              <div className="row_far2">
+                <div className="awardName">{section.name.value}</div>
+                <div className="awarder">{section.awarder.value}</div>
               </div>
-              <div className='row_far3'>
-                <div className='summary'>{section.summary.value}</div>
-                <div className='awardDate'>{section.date.value}</div>
+              <div className="row_far3">
+                <div className="summary">{section.summary.value}</div>
+                <div className="awardDate">{section.date.value}</div>
               </div>
             </div>
           )
         })}
       </div>
-    </div>
+    </div>,
   )
   return [renderToString(render), render]
 }
@@ -179,24 +179,24 @@ const Template = (props) => {
 
   if (pdf) {
     preview = (
-      <object data={pdf} type='application/pdf' width='100%' height='100%'>
+      <object data={pdf} type="application/pdf" width="100%" height="100%">
         <p>Your web browser doesn't have a PDF plugin. Instead you can</p>
-        <a className='myBtnActive2' href={pdf}>
+        <a className="myBtnActive2" href={pdf}>
           Download PDF
         </a>
       </object>
     )
   } else if (props.loading) {
     preview = (
-      <div className='buildPdf'>
-        <div className='spinner-loader' />
+      <div className="buildPdf">
+        <div className="spinner-loader" />
       </div>
     )
   } else {
-    preview = <div className='buildPdf'>Click Build to generate a PDF.</div>
+    preview = <div className="buildPdf">Click Build to generate a PDF.</div>
   }
 
-  return <div className='template1'>{preview}</div>
+  return <div className="template1">{preview}</div>
 }
 
 export default Template

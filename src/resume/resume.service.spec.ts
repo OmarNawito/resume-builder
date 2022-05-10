@@ -19,7 +19,7 @@ describe('ResumeService', () => {
         AppModule,
         TypeOrmModule.forRoot(createTestConfiguration([Resume])),
         TypeOrmModule.forFeature([Resume]),
-      ]
+      ],
     }).compile();
 
     service = module.get<ResumeService>(ResumeService);
@@ -45,7 +45,7 @@ describe('ResumeService', () => {
         sureName: 'nawito',
         city: '6 october',
         country: 'Egypt',
-        zipCode: '12345'
+        zipCode: '12345',
       };
       const result = await service.updatePersonalDetails(
         '5e9f8f8f8f8f8f8f8f8f8f8f8f8f8f8f',
@@ -60,26 +60,29 @@ describe('ResumeService', () => {
       const educationData: UpdateEducationDto = {
         educations: [
           {
-            "collegeName": "collegeName",
-            "degree": "degree",
-            "collegeLocation": "collegeLocation",
-            "startDate": "startDate",
-            "endDate": "endDate",
-            "gpa": "gpa",
-            "major": "major"
-          }
-        ]
+            collegeName: 'collegeName',
+            degree: 'degree',
+            collegeLocation: 'collegeLocation',
+            startDate: 'startDate',
+            endDate: 'endDate',
+            gpa: 'gpa',
+            major: 'major',
+          },
+        ],
       };
-      const result = await service.updateEducation('5e9f8f8f8f8f8f8f8f8f8f8f8f8f8f8f', educationData)
-      expect(result).toMatchObject(educationData)
+      const result = await service.updateEducation(
+        '5e9f8f8f8f8f8f8f8f8f8f8f8f8f8f8f',
+        educationData,
+      );
+      expect(result).toMatchObject(educationData);
     });
   });
 
   describe('Generate pdf', () => {
     it('should convert html to pdf', async () => {
-      const style = '<style>body { font-family: sans-serif; }</style>'
-      const resume = '<h1>Sample resume</h1>'
-      const result = await service.resumePdf(style, resume)
+      const style = '<style>body { font-family: sans-serif; }</style>';
+      const resume = '<h1>Sample resume</h1>';
+      const result = await service.resumePdf(style, resume);
       expect(result.length).toBeGreaterThan(0);
     });
   });

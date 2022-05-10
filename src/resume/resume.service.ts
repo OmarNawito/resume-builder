@@ -20,6 +20,25 @@ export class ResumeService {
     private readonly logService: ReqResLogService,
   ) {}
 
+  async findAll() {
+    try {
+      const resumes = await this.resumeModel.find();
+      return resumes;
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+
+  async findByResumeId(resumeId: string) {
+    try {
+      return await this.resumeModel.findOne({
+        resumeId,
+      });
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+
   async updatePersonalDetails(
     id: string,
     updatePersonalDetailsDto: UpdatePersonalDetailsDto,
@@ -31,14 +50,14 @@ export class ResumeService {
         { $set: updatePersonalDetailsDto },
         { upsert: true, new: true },
       );
-        this.logService.emitEvent('asyncLogging', {
-          resumeId: id,
-          request: {
-              headers: req && req.headers ? req.headers : '',
-              body: req && req.body ? req.body : '',
-          },
-          response: {...personalDetails}
-      })
+      this.logService.emitEvent('asyncLogging', {
+        resumeId: id,
+        request: {
+          headers: req && req.headers ? req.headers : '',
+          body: req && req.body ? req.body : '',
+        },
+        response: { ...personalDetails },
+      });
       return personalDetails;
     } catch (error) {
       throw new InternalServerErrorException(error);
@@ -48,7 +67,7 @@ export class ResumeService {
   async updateEducation(
     id: string,
     updateEducationDto: UpdateEducationDto,
-    req? : Request,
+    req?: Request,
   ) {
     try {
       const educations = await this.resumeModel.findOneAndUpdate(
@@ -61,7 +80,7 @@ export class ResumeService {
         resumeId: id,
         request: {
           headers: req && req.headers ? req.headers : '',
-          body: req && req.body ? req.body : ''
+          body: req && req.body ? req.body : '',
         },
         response: { ...educations },
       });
@@ -167,14 +186,6 @@ export class ResumeService {
     }
   }
 
-  async findAll() {
-    try {
-      const resumes = await this.resumeModel.find();
-      return resumes;
-    } catch (err) {
-      console.log(err.message);
-    }
-  }
   async resumePdf(style: string, resume: string, res?: Response) {
     try {
       const resumeHTML = `<html><head><style>${style}</style></head><body>${resume}</body></html>`;

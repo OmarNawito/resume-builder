@@ -95,6 +95,11 @@ export class ResumeController {
     return this.resumeService.findAll();
   }
 
+  @Get('/:id')
+  async findResume(@Param('id') id: string) {
+    return await this.resumeService.findByResumeId(id);
+  }
+
   @Post()
   @Header('Content-Type', 'application/pdf')
   @Header('Content-Disposition', 'attachment; filename=resume.pdf')
