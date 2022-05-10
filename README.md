@@ -79,7 +79,7 @@ Using no sql database for testing
 
 Run `npm start test`
 
-# Swagger API docs
+## Swagger API docs
 
 Already integrated API documentation. To see all available endpoints visit http://localhost:4000/api
 
