@@ -10,15 +10,15 @@ Content-Type: application/json
 Accept: application/json
 
 {
-    "phone": "0121055446",
+    "phone": "01221055446",
     "zipCode": 123,
-    "country": "asd",
-    "city": "asd",
-    "email": "o_mohsen@hotmail.com",
+    "country": "Egypt",
+    "city": "6 october",
+    "email": "o@hotmail.com",
     "sureName": "nawito",
-    "lastName": "mohsen",
+    "lastName": "nawito",
     "firstName": "Omar",
-    "address": "asd"
+    "address": "6 october"
 }
 
 #############################
