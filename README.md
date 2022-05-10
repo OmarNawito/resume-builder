@@ -79,6 +79,10 @@ Using no sql database for testing
 
 Run `npm start test`
 
+# Swagger API docs
+
+Already integrated API documentation. To see all available endpoints visit http://localhost:4000/api
+
 ## 1.6 Public API
 
 ### Update Personal Details
@@ -267,7 +271,3 @@ Set the header as follows:
 ##### Success
 
 `200 OK`
-
-# Swagger API docs
-
-Already integrated API documentation. To see all available endpoints visit http://localhost:4000/api
