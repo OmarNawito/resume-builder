@@ -1,28 +1,28 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { Type } from 'class-transformer';
-import { IsNotEmpty, IsString, IsArray, ValidateNested } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger'
+import { Type } from 'class-transformer'
+import { IsNotEmpty, IsString, IsArray, ValidateNested } from 'class-validator'
 
 export class UpdateSkill {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
     example: 'programming',
-    type: String,
+    type: String
   })
-  name: string;
+  name: string
 
   @IsArray()
   @IsNotEmpty()
   @ApiProperty({
     example: 'JavaScript',
-    type: String,
+    type: String
   })
-  details: string[];
+  details: string[]
 }
 
 export class UpdateSkillDto {
   @ValidateNested({ each: true })
   @Type(() => UpdateSkill)
   @ApiProperty({ type: [UpdateSkill] })
-  skills: UpdateSkill[];
+  skills: UpdateSkill[]
 }

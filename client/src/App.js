@@ -8,7 +8,7 @@ import Section from './components/Section'
 import axios from 'axios'
 import { Style as style1, Render as render1 } from './Templates/template1'
 
-function App() {
+function App () {
   const [style, setStyle] = useState(1)
   const [activeSection, setActiveSection] = useState(0)
   const [resumeID, setResumeID] = useState()
@@ -28,43 +28,43 @@ function App() {
             required: true,
             value: '',
             placeHolder: 'firstName',
-            type: 'text',
+            type: 'text'
           },
           lastName: {
             required: true,
             value: '',
             placeHolder: 'lastName',
-            type: 'text',
+            type: 'text'
           },
           sureName: {
             required: true,
             value: '',
             placeHolder: 'sureName',
-            type: 'text',
+            type: 'text'
           },
           Email: {
             required: true,
             value: '',
             placeHolder: 'Email',
-            type: 'email',
+            type: 'email'
           },
           phone: {
             required: true,
             value: '',
             placeHolder: 'phone',
-            type: 'text',
+            type: 'text'
           },
           zipCode: {
             required: true,
             value: '',
             placeHolder: 'zipCode',
-            type: 'text',
+            type: 'text'
           },
           Country: { value: '', placeHolder: 'Country', type: 'text' },
           City: { value: '', placeHolder: 'City', type: 'text' },
-          Address: { value: '', placeHolder: 'Address', type: 'text' },
-        },
-      ],
+          Address: { value: '', placeHolder: 'Address', type: 'text' }
+        }
+      ]
     },
     Education: {
       name: 'Education',
@@ -76,41 +76,41 @@ function App() {
             required: true,
             value: '',
             placeHolder: 'Name',
-            type: 'text',
+            type: 'text'
           },
           collegeLocation: {
             required: true,
             value: '',
             placeHolder: 'Stanford, CA',
-            type: 'text',
+            type: 'text'
           },
           degree: {
             required: true,
             value: '',
             placeHolder: 'BS',
-            type: 'text',
+            type: 'text'
           },
           major: {
             required: true,
             value: '',
             placeHolder: 'Computer Science',
-            type: 'text',
+            type: 'text'
           },
           gpa: { required: true, value: '', placeHolder: '5.5', type: 'text' },
           startDate: {
             required: true,
             value: '',
             placeHolder: 'June 2017',
-            type: 'text',
+            type: 'text'
           },
           endDate: {
             required: true,
             value: '',
             placeHolder: 'May 2021',
-            type: 'text',
-          },
-        },
-      ],
+            type: 'text'
+          }
+        }
+      ]
     },
     Work: {
       name: 'Work',
@@ -122,40 +122,40 @@ function App() {
             required: true,
             value: '',
             placeHolder: 'Google',
-            type: 'text',
+            type: 'text'
           },
           jobTitle: {
             required: true,
             value: '',
             placeHolder: 'Software Engineer',
-            type: 'text',
+            type: 'text'
           },
           jobLocation: {
             required: true,
             value: '',
             placeHolder: 'Mountain View, CA',
-            type: 'text',
+            type: 'text'
           },
           endDate: {
             required: true,
             value: '',
             placeHolder: 'June 2017',
-            type: 'text',
+            type: 'text'
           },
           startDate: {
             required: true,
             value: '',
             placeHolder: 'May 2021 / Present / Etc.',
-            type: 'text',
+            type: 'text'
           },
           jobResponsibilities: {
             required: true,
             value: [''],
             placeHolder: 'I did this stuff in company',
-            type: 'addable',
-          },
-        },
-      ],
+            type: 'addable'
+          }
+        }
+      ]
     },
     Skills: {
       name: 'Skills',
@@ -167,16 +167,16 @@ function App() {
             required: true,
             value: '',
             placeHolder: 'Programming Languages',
-            type: 'text',
+            type: 'text'
           },
           details: {
             required: true,
             value: [''],
             placeHolder: 'Java',
-            type: 'addable',
-          },
-        },
-      ],
+            type: 'addable'
+          }
+        }
+      ]
     },
     Projects: {
       name: 'Projects',
@@ -188,28 +188,28 @@ function App() {
             required: true,
             value: '',
             placeHolder: 'Chat App',
-            type: 'text',
+            type: 'text'
           },
           description: {
             required: true,
             value: '',
             placeHolder: 'Online chat app',
-            type: 'text',
+            type: 'text'
           },
           linkToProject: {
             required: true,
             value: '',
             placeHolder: 'https://project.com',
-            type: 'text',
+            type: 'text'
           },
           toolsUsed: {
             required: true,
             value: [''],
             placeHolder: 'Java',
-            type: 'addable',
-          },
-        },
-      ],
+            type: 'addable'
+          }
+        }
+      ]
     },
     Awards: {
       name: 'Awards',
@@ -221,29 +221,29 @@ function App() {
             required: true,
             value: '',
             placeHolder: 'FrontEnd Developer',
-            type: 'text',
+            type: 'text'
           },
           date: {
             required: true,
             value: '',
             placeHolder: 'Sep 2020',
-            type: 'text',
+            type: 'text'
           },
           awarder: {
             required: true,
             value: '',
             placeHolder: 'FreeCodeCamp',
-            type: 'text',
+            type: 'text'
           },
           summary: {
             required: true,
             value: '',
             placeHolder: 'Rewarded for 300 hours course work and projects',
-            type: 'text',
-          },
-        },
-      ],
-    },
+            type: 'text'
+          }
+        }
+      ]
+    }
   })
 
   const [templates, setTemplates] = useState([
@@ -251,15 +251,14 @@ function App() {
       id: 1,
       src: Template1,
       title: 'Template 1',
-      active: true,
-    },
+      active: true
+    }
   ])
 
-  useEffect( ()=>{
-    var data = localStorage.getItem('Resume');
-    if (data) setResume(JSON.parse(data));
-  }, []
-)
+  useEffect(() => {
+    const data = localStorage.getItem('Resume')
+    if (data) setResume(JSON.parse(data))
+  }, [])
 
   const contentHandler = (content) => {
     resume[content.name] = content
@@ -267,19 +266,22 @@ function App() {
     sectionHandler(content.name)
   }
 
-  async function downloadPdf() {
+  async function downloadPdf () {
     try {
       setPdfLoading(true)
       setPdf('')
+
       const response = await axios.post(
         '/resume',
         {
           resume: "<div class='template1'>" + render + '</div>',
-          style: cssStyle,
+          style: cssStyle
         },
-        { responseType: 'blob' },
+        { responseType: 'blob' }
       )
+
       setPdfLoading(false)
+
       const objectURL = URL.createObjectURL(response.data)
       setPdf(objectURL)
     } catch (error) {
@@ -303,7 +305,7 @@ function App() {
     { name: 'Work', active: false },
     { name: 'Skills', active: false },
     { name: 'Projects', active: false },
-    { name: 'Awards', active: false },
+    { name: 'Awards', active: false }
   ])
 
   const templateHandler = (id) => {
@@ -312,7 +314,7 @@ function App() {
         if (t.id === id) t.active = true
         else if (t.active === true) t.active = false
         return t
-      }),
+      })
     )
     setStyle(id)
     sectionHandler('Templates')
@@ -322,25 +324,28 @@ function App() {
     setResumeID(Math.random().toString(16).slice(-4))
   }
 
-
   const nextSection = async () => {
     if (activeSection < sections.length - 1) {
       setActiveSection(activeSection + 1)
       sectionHandler(sections[activeSection + 1].name)
+
       switch (activeSection) {
         case 1:
+          const [section] = resume.Profile.sections
           const personalDetails = {
-            firstName: resume.Profile.sections[0].firstName.value,
-            lastName: resume.Profile.sections[0].lastName.value,
-            sureName: resume.Profile.sections[0].sureName.value,
-            email: resume.Profile.sections[0].Email.value,
-            phone: resume.Profile.sections[0].phone.value,
-            zipCode: resume.Profile.sections[0].zipCode.value,
-            country: resume.Profile.sections[0].Country.value,
-            city: resume.Profile.sections[0].City.value,
-            address: resume.Profile.sections[0].Address.value,
+            firstName: section.firstName.value,
+            lastName: section.lastName.value,
+            sureName: section.sureName.value,
+            email: section.Email.value,
+            phone: section.phone.value,
+            zipCode: section.zipCode.value,
+            country: section.Country.value,
+            city: section.City.value,
+            address: section.Address.value
           }
+          
           await axios.patch(`/resume/personal-details/${resumeID}`, personalDetails)
+
           break
         case 2:
           const eductionsData = JSON.parse(JSON.stringify(resume.Education.sections)).map(
@@ -349,11 +354,13 @@ function App() {
                 entry[key] = entry[key].value
               }
               return entry
-            },
+            }
           )
+
           await axios.patch(`/resume/education/${resumeID}`, {
-            educations: eductionsData,
+            educations: eductionsData
           })
+
           break
         case 3:
           const ExperienceData = JSON.parse(JSON.stringify(resume.Work.sections)).map(
@@ -362,11 +369,13 @@ function App() {
                 entry[key] = entry[key].value
               }
               return entry
-            },
+            }
           )
+
           await axios.patch(`/resume/experience/${resumeID}`, {
-            experiences: ExperienceData,
+            experiences: ExperienceData
           })
+
           break
         case 4:
           const SkillsData = JSON.parse(JSON.stringify(resume.Skills.sections)).map(
@@ -375,11 +384,13 @@ function App() {
                 entry[key] = entry[key].value
               }
               return entry
-            },
+            }
           )
+
           await axios.patch(`/resume/skills/${resumeID}`, {
-            skills: SkillsData,
+            skills: SkillsData
           })
+
           break
         case 5:
           const ProjectData = JSON.parse(JSON.stringify(resume.Projects.sections)).map(
@@ -388,11 +399,13 @@ function App() {
                 entry[key] = entry[key].value
               }
               return entry
-            },
+            }
           )
+
           await axios.patch(`/resume/projects/${resumeID}`, {
-            projects: ProjectData,
+            projects: ProjectData
           })
+
           break
         default:
           break
@@ -401,7 +414,7 @@ function App() {
   }
 
   const build = () => {
-    localStorage.setItem('Resume', JSON.stringify(resume));
+    localStorage.setItem('Resume', JSON.stringify(resume))
   }
 
   const sendAward = async () => {
@@ -412,11 +425,12 @@ function App() {
           entry[key] = entry[key].value
         }
         return entry
-      },
+      }
     )
-    const test = await axios.patch(`/resume/projects/${resumeID}`, { awards })
-    console.log(test)
+
+    await axios.patch(`/resume/projects/${resumeID}`, { awards })
   }
+
   const prevSection = () => {
     if (activeSection > 0) {
       setActiveSection(activeSection - 1)
@@ -425,48 +439,50 @@ function App() {
   }
 
   const [section, setSection] = useState(
-    <Template templates={templates} handler={templateHandler} />,
+    <Template templates={templates} handler={templateHandler} />
   )
 
-  let prev, next, make, finish
+  let prevBtn, nextBtn, makeBtn, finishBtn
 
   if (activeSection > 0) {
-    prev = (
-      <div className="myBtn" onClick={prevSection}>
+    prevBtn = (
+      <div className='myBtn' onClick={prevSection}>
         Prev
       </div>
     )
   } else {
-    prev = (
-      <div className="myBtn" style={{ pointerEvents: 'none', opacity: '0.5' }}>
+    prevBtn = (
+      <div className='myBtn' style={{ pointerEvents: 'none', opacity: '0.5' }}>
         Prev
       </div>
     )
   }
+
   if (activeSection >= 0 && activeSection < sections.length - 1) {
-    next = (
-      <div className="myBtn" onClick={nextSection}>
+    nextBtn = (
+      <div className='myBtn' onClick={nextSection}>
         Next
       </div>
     )
   } else if (activeSection <= sections.length - 1) {
-    finish = <div className="myBtn" onClick={sendAward}>Finish</div>
+    finishBtn = <div className='myBtn' onClick={sendAward}>Finish</div>
   } else {
-    next = (
-      <div className="myBtn" style={{ pointerEvents: 'none', opacity: '0.5' }}>
+    nextBtn = (
+      <div className='myBtn' style={{ pointerEvents: 'none', opacity: '0.5' }}>
         Next
       </div>
     )
   }
+  
   if (activeSection === sections.length - 1) {
-    make = (
-      <div onClick={downloadPdf} className="myBtn">
+    makeBtn = (
+      <div onClick={downloadPdf} className='myBtn'>
         Build
       </div>
     )
   } else {
-    make = (
-      <div className="myBtn" style={{ pointerEvents: 'none', opacity: '0.5' }}>
+    makeBtn = (
+      <div className='myBtn' style={{ pointerEvents: 'none', opacity: '0.5' }}>
         Build
       </div>
     )
@@ -480,7 +496,7 @@ function App() {
           setActiveSection(i)
         } else if (sec.active) sec.active = false
         return sec
-      }),
+      })
     )
 
     if (name === 'Templates') {
@@ -491,12 +507,12 @@ function App() {
   }
 
   const more = (
-    <div className="row-full">
+    <div className='row-full'>
       <div onClick={build} className='myBtn'>Save</div>
-      {prev}
-      {make}
-      {next}
-      {finish}
+      {prevBtn}
+      {makeBtn}
+      {nextBtn}
+      {finishBtn}
     </div>
   )
 
@@ -505,15 +521,15 @@ function App() {
   }, [style])
 
   return (
-    <div className="main">
+    <div className='main'>
       <Header />
-      <div className="container">
+      <div className='container'>
         <Sections sections={sections} btnHandler={sectionHandler} />
         {section}
         <Preview loading={pdfLoading} pdf={pdf} resume={resume} template={style} />
       </div>
 
-      <div className="footer">{more}</div>
+      <div className='footer'>{more}</div>
     </div>
   )
 }

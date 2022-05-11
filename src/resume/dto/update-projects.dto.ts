@@ -1,44 +1,44 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { Type } from 'class-transformer';
-import { IsArray, IsNotEmpty, IsString, ValidateNested } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger'
+import { Type } from 'class-transformer'
+import { IsArray, IsNotEmpty, IsString, ValidateNested } from 'class-validator'
 
 export class UpdateProjects {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
     example: 'Chat App',
-    type: String,
+    type: String
   })
-  name: string;
+  name: string
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
     example: 'Online Chat App',
-    type: String,
+    type: String
   })
-  description: string;
+  description: string
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
     example: 'https://project.com',
-    type: String,
+    type: String
   })
-  linkToProject: string;
+  linkToProject: string
 
   @IsArray()
   @IsNotEmpty()
   @ApiProperty({
     example: 'https://project.com',
-    type: [String],
+    type: [String]
   })
-  toolsUsed: string[];
+  toolsUsed: string[]
 }
 
 export class UpdateProjectsDto {
   @ValidateNested({ each: true })
   @Type(() => UpdateProjects)
   @ApiProperty({ type: [UpdateProjects] })
-  projects: UpdateProjects[];
+  projects: UpdateProjects[]
 }

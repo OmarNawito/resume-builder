@@ -1,29 +1,29 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
-import * as request from 'supertest';
-import { AppModule } from './../src/app.module';
-import { UpdatePersonalDetailsDto } from 'src/resume/dto/update-personalDetails.dto';
-import { UpdateEducationDto } from 'src/resume/dto/update-education.dto';
+import { Test, TestingModule } from '@nestjs/testing'
+import { INestApplication } from '@nestjs/common'
+import * as request from 'supertest'
+import { AppModule } from './../src/app.module'
+import { UpdatePersonalDetailsDto } from 'src/resume/dto/update-personalDetails.dto'
+import { UpdateEducationDto } from 'src/resume/dto/update-education.dto'
 
 describe('AppController (e2e)', () => {
-  let app: INestApplication;
+  let app: INestApplication
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
-    }).compile();
+      imports: [AppModule]
+    }).compile()
 
-    app = moduleFixture.createNestApplication();
-    await app.init();
-  });
+    app = moduleFixture.createNestApplication()
+    await app.init()
+  })
 
-  it('/ (GET)', () => {
-    return request(app.getHttpServer())
+  it('/ (GET)', async () => {
+    return await request(app.getHttpServer())
       .get('/')
       .expect(200)
-      .expect('Hello World!');
-  });
-  it('/resume/personal-details/resumeId (PATCH)', () => {
+      .expect('Hello World!')
+  })
+  it('/resume/personal-details/resumeId (PATCH)', async () => {
     const personalDetails: UpdatePersonalDetailsDto = {
       firstName: 'John',
       lastName: 'Doe',
@@ -33,15 +33,15 @@ describe('AppController (e2e)', () => {
       sureName: 'nawito',
       city: '6 october',
       country: 'Egypt',
-      zipCode: '12345',
-    };
-    return request(app.getHttpServer())
+      zipCode: '12345'
+    }
+    return await request(app.getHttpServer())
       .patch('/resume/personal-details/1234')
       .send(personalDetails)
-      .expect(200);
-  });
+      .expect(200)
+  })
 
-  it('/resume/education/resumeId (PATCH)', () => {
+  it('/resume/education/resumeId (PATCH)', async () => {
     const educationData: UpdateEducationDto = {
       educations: [
         {
@@ -51,16 +51,16 @@ describe('AppController (e2e)', () => {
           startDate: 'startDate',
           endDate: 'endDate',
           gpa: 'gpa',
-          major: 'major',
-        },
-      ],
-    };
-    return request(app.getHttpServer())
+          major: 'major'
+        }
+      ]
+    }
+    return await request(app.getHttpServer())
       .patch('/resume/education/1234')
       .send(educationData)
-      .expect(200);
-  });
+      .expect(200)
+  })
   afterAll(async () => {
-    await app.close();
-  });
-});
+    await app.close()
+  })
+})

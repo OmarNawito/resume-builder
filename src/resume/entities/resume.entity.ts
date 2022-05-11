@@ -1,145 +1,157 @@
-import { Prop, raw, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose from 'mongoose';
-import { Document } from 'mongoose';
+import { Prop, raw, Schema, SchemaFactory } from '@nestjs/mongoose'
+import { Document } from 'mongoose'
 
-export type ResumeDocument = Resume & Document;
+export type ResumeDocument = Resume & Document
 
 @Schema()
 export class Education {
   @Prop()
-  collegeName: string;
+  collegeName: string
 
   @Prop()
-  collegeLocation: string;
+  collegeLocation: string
 
   @Prop()
-  degree: string;
+  degree: string
 
   @Prop()
-  major: string;
+  major: string
 
   @Prop()
-  gpa: string;
+  gpa: string
 
   @Prop()
-  startDate: string;
+  startDate: string
 
   @Prop()
-  endDate: string;
+  endDate: string
 }
 
-const EducationSchema = SchemaFactory.createForClass(Education);
+const EducationSchema = SchemaFactory.createForClass(Education)
 
 @Schema()
 export class Experience {
   @Prop()
-  companyName: string;
+  companyName: string
+
   @Prop()
-  jobTitle: string;
+  jobTitle: string
+
   @Prop()
-  jobLocation: string;
+  jobLocation: string
+
   @Prop()
-  jobResponsibilities: string[];
+  jobResponsibilities: string[]
+
   @Prop()
-  startDate: string;
+  startDate: string
+
   @Prop()
-  endDate: string;
+  endDate: string
 }
 
-const ExperienceSchema = SchemaFactory.createForClass(Experience);
+const ExperienceSchema = SchemaFactory.createForClass(Experience)
+
 @Schema()
 export class Skills {
   @Prop()
-  name: string;
+  name: string
+
   @Prop()
-  details: string[];
+  details: string[]
 }
 
-const SkillsSchema = SchemaFactory.createForClass(Skills);
+const SkillsSchema = SchemaFactory.createForClass(Skills)
 @Schema()
 export class Projects {
   @Prop()
-  name: string;
+  name: string
+
   @Prop()
-  description: string;
+  description: string
+
   @Prop()
-  linkToProject: string;
+  linkToProject: string
+
   @Prop()
-  toolsUsed: string[];
+  toolsUsed: string[]
 }
 
-const ProjectsSchema = SchemaFactory.createForClass(Projects);
+const ProjectsSchema = SchemaFactory.createForClass(Projects)
 @Schema()
 export class Awards {
   @Prop()
-  name: string;
+  name: string
+
   @Prop()
-  date: string;
+  date: string
+
   @Prop()
-  awarder: string;
+  awarder: string
+
   @Prop()
-  summary: string;
+  summary: string
 }
 
-const AwardsSchema = SchemaFactory.createForClass(Awards);
+const AwardsSchema = SchemaFactory.createForClass(Awards)
 
 @Schema({ timestamps: true })
 export class Resume extends Document {
   @Prop({ required: true, type: String })
-  resumeId: string;
+  resumeId: string
 
   @Prop({ required: true, type: String })
-  firstName: string;
+  firstName: string
 
   @Prop({ required: true, type: String })
-  lastName: string;
+  lastName: string
 
   @Prop({ required: true, type: String })
-  sureName: string;
+  sureName: string
 
   @Prop({ type: String, required: true })
-  email: string;
+  email: string
 
   @Prop({ type: String, required: true })
-  city: string;
+  city: string
 
   @Prop({ type: String, required: true })
-  address: string;
+  address: string
 
   @Prop({ type: String, required: true })
-  country: string;
+  country: string
 
   @Prop({ type: String, required: true })
-  zipCode: string;
+  zipCode: string
 
   @Prop({ type: String, required: true })
-  phone: string;
+  phone: string
 
   @Prop({ type: [EducationSchema], required: true })
-  educations: Education[];
+  educations: Education[]
 
   @Prop({ type: [ExperienceSchema], required: true })
-  experiences: Experience[];
+  experiences: Experience[]
 
   @Prop({ type: [SkillsSchema], required: true })
-  skills: Skills[];
+  skills: Skills[]
 
   @Prop({ type: [ProjectsSchema], required: true })
-  projects: Projects[];
+  projects: Projects[]
 
   @Prop({ type: [AwardsSchema], required: true })
-  awards: Awards[];
+  awards: Awards[]
 
   @Prop(
     raw({
       linkedin: { type: String },
-      twitter: { type: String },
-    }),
+      twitter: { type: String }
+    })
   )
-  social: Record<string, any>;
+  social: Record<string, any>
 
   @Prop({ type: Date, default: Date.now })
-  date: Date;
+  date: Date
 }
 
-export const ResumeSchema = SchemaFactory.createForClass(Resume);
+export const ResumeSchema = SchemaFactory.createForClass(Resume)

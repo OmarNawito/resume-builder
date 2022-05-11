@@ -1,67 +1,67 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger'
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator'
 
 export class UpdatePersonalDetailsDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: 'Omar',
+    example: 'Omar'
   })
-  firstName: string;
+  firstName: string
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: 'Nawito',
+    example: 'Nawito'
   })
-  lastName: string;
+  lastName: string
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: 'Nawito',
+    example: 'Nawito'
   })
-  sureName: string;
+  sureName: string
 
   @IsEmail()
   @IsNotEmpty()
   @ApiProperty({
-    example: 'o_mohsen@hotmail.com',
+    example: 'o_mohsen@hotmail.com'
   })
-  email: string;
+  email: string
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: '6 october',
+    example: '6 october'
   })
-  address: string;
+  address: string
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: '6 october',
+    example: '6 october'
   })
-  city: string;
+  city: string
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: 'Egypt',
+    example: 'Egypt'
   })
-  country: string;
+  country: string
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: '01155907333',
+    example: '01155907333'
   })
-  phone: string;
+  phone: string
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    example: '12345',
+    example: '12345'
   })
-  zipCode: string;
+  zipCode: string
 }

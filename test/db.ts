@@ -1,14 +1,14 @@
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { TypeOrmModuleOptions } from '@nestjs/typeorm'
 
-type Entity = Function | string;
+type Entity = Function | string
 
 export const createTestConfiguration = (
-  entities: Entity[],
+  entities: Entity[]
 ): TypeOrmModuleOptions => ({
   type: 'sqlite',
   database: ':memory:',
   entities,
   dropSchema: true,
   synchronize: true,
-  logging: false,
-});
+  logging: false
+})

@@ -1,68 +1,68 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { Type } from 'class-transformer';
-import { IsNotEmpty, IsString, ValidateNested } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger'
+import { Type } from 'class-transformer'
+import { IsNotEmpty, IsString, ValidateNested } from 'class-validator'
 
 export class UpdateEducation {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
     example: 'MUST',
-    type: String,
+    type: String
   })
-  collegeName: string;
+  collegeName: string
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
     example: 'Standford, CA',
-    type: String,
+    type: String
   })
-  collegeLocation: string;
+  collegeLocation: string
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
     example: 'CS',
-    type: String,
+    type: String
   })
-  degree: string;
+  degree: string
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
     example: 'Computer Science',
-    type: String,
+    type: String
   })
-  major: string;
+  major: string
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
     example: '5.5',
-    type: String,
+    type: String
   })
-  gpa: string;
+  gpa: string
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
     example: 'June 2017',
-    type: String,
+    type: String
   })
-  startDate: string;
+  startDate: string
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
     example: 'May 2021',
-    type: String,
+    type: String
   })
-  endDate: string;
+  endDate: string
 }
 
 export class UpdateEducationDto {
   @ValidateNested({ each: true })
   @Type(() => UpdateEducation)
   @ApiProperty({ type: [UpdateEducation] })
-  educations: UpdateEducation[];
+  educations: UpdateEducation[]
 }

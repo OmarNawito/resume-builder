@@ -1,7 +1,7 @@
-import { Document } from 'mongoose';
+import { Document } from 'mongoose'
 
 export interface Log extends Document {
-  readonly resumeId: string;
-  readonly request: object;
-  readonly response: object;
+  readonly resumeId: string
+  readonly request: object
+  readonly response: object
 }

@@ -6,6 +6,6 @@ export default (): Record<string, any> => ({
     port: process.env.DATABASE_PORT || '27017',
     name: process.env.DATABASE_NAME || 'resume',
     user: process.env.DATABASE_USER || 'nawitoUser',
-    password: process.env.DATABASE_PASSWORD || 'password',
-  },
-});
+    password: process.env.DATABASE_PASSWORD || 'password'
+  }
+})

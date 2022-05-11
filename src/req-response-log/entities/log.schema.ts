@@ -1,26 +1,26 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
+import { Document } from 'mongoose'
 
-export type LogDocument = Log & Document;
+export type LogDocument = Log & Document
 
 @Schema({ timestamps: true })
 export class Log extends Document {
   @Prop({ required: true, type: String })
-  resumeId: string;
+  resumeId: string
 
   @Prop({ required: true, type: Object })
-  request: string;
+  request: string
 
   @Prop({ required: true, type: {} })
-  response: string;
+  response: string
 
   @Prop({
     required: true,
     default: Date.now,
     type: Date,
-    index: { expires: 2592000 },
+    index: { expires: 2592000 }
   })
-  createdAt: {};
+  createdAt: {}
 }
 
-export const LogSchema = SchemaFactory.createForClass(Log);
+export const LogSchema = SchemaFactory.createForClass(Log)

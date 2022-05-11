@@ -2,9 +2,9 @@ import React from 'react'
 import DummyResume from '../DummyResume'
 
 const LabelInput = (props) => {
-  let input
-  let add
-  let del
+  let sectionInputs
+  let addBtn
+  let delBtn
 
   const addSection = () => {
     props.onChangeHandler(props.changeKey, [...props.value, ''])
@@ -16,26 +16,28 @@ const LabelInput = (props) => {
 
   if (Array.isArray(props.value)) {
     if (props.value.length > 1) {
-      del = (
-        <div onClick={deleteSection} className="myBtnDel">
+      delBtn = (
+        <div onClick={deleteSection} className='myBtnDel'>
           Delete
         </div>
       )
     }
-    add = (
-      <div className="row">
-        <div onClick={addSection} className="myBtn">
+
+    addBtn = (
+      <div className='row'>
+        <div onClick={addSection} className='myBtn'>
           Add
         </div>
-        {del}
+        {delBtn}
       </div>
     )
-    input = props.value.map((item, i) => {
+
+    sectionInputs = props.value.map((item, i) => {
       return (
         <input
           key={i}
           placeholder={props.placeHolder}
-          className="form-control"
+          className='form-control'
           value={item}
           name={props.name}
           onChange={(e) => props.onChangeHandler(props.changeKey, e.target.value, i)}
@@ -43,27 +45,28 @@ const LabelInput = (props) => {
       )
     })
   } else {
-    input = (
+    sectionInputs = (
       <input
         placeholder={props.placeHolder}
-        className="form-control"
+        className='form-control'
         value={props.value}
         name={props.name}
         onChange={(e) => props.onChangeHandler(props.changeKey, e.target.value)}
       />
     )
   }
+
   return (
-    <div className="labelInput">
+    <div className='labelInput'>
       <label>{props.name}</label>
-      {input}
-      {add}
+      {sectionInputs}
+      {addBtn}
     </div>
   )
 }
 
 const SectionData = (props) => {
-  const rener = props.inputs.map((item, i) => {
+  const inputs = props.inputs.map((item, i) => {
     return (
       <LabelInput
         key={i}
@@ -78,8 +81,8 @@ const SectionData = (props) => {
   })
 
   return (
-    <div className="subSection">
-      {rener}
+    <div className='subSection'>
+      {inputs}
       <hr />
     </div>
   )
@@ -88,23 +91,19 @@ const SectionData = (props) => {
 const Section = (props) => {
   const helper = []
 
-  for (let i = 0; i < props.content.sections.length; i++) {
-    const section = props.content.sections[i]
+  props.content.sections.forEach((section, i) => {
     const keys = Object.keys(section)
-    const h = []
+    const helperInstance = keys.map(key => ({
+      name: key,
+      placeHolder: section[key].placeHolder,
+      value: section[key].value,
+      type: section[key].type,
+      required: section[key].required,
+      onChange: { index: i, key: key }
+    }))
 
-    for (let j = 0; j < keys.length; j++) {
-      h.push({
-        name: keys[j],
-        placeHolder: section[keys[j]].placeHolder,
-        value: section[keys[j]].value,
-        type: section[keys[j]].type,
-        required: section[keys[j]].required,
-        onChange: { index: i, key: keys[j] },
-      })
-    }
-    helper.push(h)
-  }
+    helper.push(helperInstance)
+  })
 
   const headHandler = (e) => {
     props.content.heading = e.target.value
@@ -131,50 +130,48 @@ const Section = (props) => {
     props.handler(props.content)
   }
 
-  const render = helper.map((item, i) => {
+  const sections = helper.map((item, i) => {
     return <SectionData key={i} inputs={item} handler={handler} />
   })
-  console.log('helper', helper)
 
-  let add
-
-  let del
+  let addBtn
+  let delBtn
 
   if (props.content.sections.length > 1) {
-    del = (
-      <div onClick={deleteSection} className="myBtnDel">
+    delBtn = (
+      <div onClick={deleteSection} className='myBtnDel'>
         Delete
       </div>
     )
   }
 
   if (props.content.extra) {
-    add = (
-      <div className="rowSub">
-        <div onClick={addSection} className="myBtn">
+    addBtn = (
+      <div className='rowSub'>
+        <div onClick={addSection} className='myBtn'>
           Add
         </div>
-        {del}
+        {delBtn}
       </div>
     )
   }
 
   return (
-    <div id="CustomSection" className="customSeciton">
+    <div id='CustomSection' className='customSeciton'>
       <h3>{'Your ' + props.name}</h3>
-      <div className="labelInput">
+      <div className='labelInput'>
         <label>Section Heading</label>
         <input
-          className="form-control"
+          className='form-control'
           value={props.content.heading}
           onChange={headHandler}
-          type="text"
-          name="heading"
+          type='text'
+          name='heading'
         />
       </div>
       <hr />
-      {render}
-      {add}
+      {sections}
+      {addBtn}
     </div>
   )
 }
