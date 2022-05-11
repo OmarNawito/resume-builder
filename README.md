@@ -273,6 +273,7 @@ Set the header as follows:
 `200 OK`
 
 # TODO
+
 ## BACKEND
 
 - [ ] Add authentication Module
@@ -283,9 +284,9 @@ Set the header as follows:
 ## CLIENT
 
 - [ ] Get my resumes
-- [ ] Add Many Templates
+- [ ] Add many templates
 - [ ] Add custom section 
-- [ ] Render updates in Preview template  
+- [ ] Render updates while the user typing in the preview template ( real time )
 - [ ] Add authentication components
 - [ ] Adding date picker 
 - [ ] Make resume validation
