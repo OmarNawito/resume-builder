@@ -272,6 +272,46 @@ Set the header as follows:
 
 `200 OK`
 
+### Update Awards Details
+
+`POST http://localhost:4000/api/resume/awards/1234`
+
+Set the header as follows:
+
+```
+"Content-Type": "application/json"
+"Accept": "application/json"
+```
+
+#### Body
+
+```
+{
+    "awards": [
+        {
+            "name": "Best Developer",
+            "date ": "Sep 2020",
+            "awarder": "google",
+            "summary": "best developer",
+            "date": "june 2017"
+        },
+        {
+            "name": "Best Developer",
+            "date ": "Sep 2020",
+            "awarder": "google",
+            "summary": "best developer",
+            "date": "june 2017"
+        }
+    ]
+}
+```
+
+#### Response
+
+##### Success
+
+`200 OK`
+
 # TODO
 
 ## BACKEND
