@@ -29,21 +29,21 @@ export class ResumeController {
   @Patch('personal-details/:id')
   @ApiResponse({ status: 200, type: UpdatePersonalDetailsDto })
   async updatePersonalDetails (
-  @Param('id') id: string,
+    @Param('id') id: string,
     @Body() updatePersonalDetailsDto: UpdatePersonalDetailsDto,
     @Req() req: Request
   ) {
     return await this.resumeService.updatePersonalDetails(
       id,
       updatePersonalDetailsDto,
-      req
+      req.headers, req.body
     )
   }
 
   @Patch('education/:id')
   @ApiResponse({ status: 200, type: UpdateEducationDto })
   async updateEducation (
-  @Param('id') id: string,
+    @Param('id') id: string,
     @Body() updateEducationDto: UpdateEducationDto,
     @Req() req: Request
   ) {
@@ -53,41 +53,41 @@ export class ResumeController {
   @Patch('experience/:id')
   @ApiResponse({ status: 200, type: UpdateExperienceDto })
   async updateExperience (
-  @Param('id') id: string,
+    @Param('id') id: string,
     @Body() updateExperienceDto: UpdateExperienceDto,
     @Req() req: Request
   ) {
-    return await this.resumeService.updateExperience(id, updateExperienceDto, req)
+    return await this.resumeService.updateExperience(id, updateExperienceDto, req.headers, req.body)
   }
 
   @Patch('skills/:id')
   @ApiResponse({ status: 200, type: UpdateSkillDto })
   async updateSkills (
-  @Param('id') id: string,
+    @Param('id') id: string,
     @Body() updateSkillDto: UpdateSkillDto,
     @Req() req: Request
   ) {
-    return await this.resumeService.updateSkill(id, updateSkillDto, req)
+    return await this.resumeService.updateSkill(id, updateSkillDto, req.headers, req.body)
   }
 
   @Patch('projects/:id')
   @ApiResponse({ status: 200, type: UpdateProjectsDto })
   async updateProjects (
-  @Param('id') id: string,
+    @Param('id') id: string,
     @Body() updateProjectsDto: UpdateProjectsDto,
     @Req() req: Request
   ) {
-    return await this.resumeService.updateProject(id, updateProjectsDto, req)
+    return await this.resumeService.updateProject(id, updateProjectsDto, req.headers, req.body)
   }
 
   @Patch('awards/:id')
   @ApiResponse({ status: 200, type: UpdateAwardsDto })
   async updateAwards (
-  @Param('id') id: string,
+    @Param('id') id: string,
     @Body() updateAwardsDto: UpdateAwardsDto,
     @Req() req: Request
   ) {
-    return await this.resumeService.updateAwards(id, updateAwardsDto, req)
+    return await this.resumeService.updateAwards(id, updateAwardsDto, req.headers, req.body)
   }
 
   @Get()

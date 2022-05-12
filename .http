@@ -85,11 +85,11 @@ Accept: application/json
     "skills": [
         {
             "name": "Javascript",
-            "details": "react"
+            "details": ["react"]
         },
         {
             "name": "php",
-            "details": "laravel"
+            "details": ["laravel"]
         }
     ]
 }
@@ -117,10 +117,25 @@ Accept: application/json
 }
 #############################
 
-POST  http://localhost:4000/api/resume HTTP/1.1
+PATCH   http://localhost:4000/api/resume/awards/1234 HTTP/1.1
 Content-Type: application/json
 Accept: application/json
 
 {
-
+    "awards": [
+        {
+            "name": "Best Developer",
+            "date ": "Sep 2020",
+            "awarder": "google",
+            "summary": "best developer",
+            "date": "june 2017"
+        },
+        {
+            "name": "Best Developer",
+            "date ": "Sep 2020",
+            "awarder": "google",
+            "summary": "best developer",
+            "date": "june 2017"
+        }
+    ]
 }

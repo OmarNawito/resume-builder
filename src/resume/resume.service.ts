@@ -32,7 +32,8 @@ export class ResumeService {
   async updatePersonalDetails (
     id: string,
     updatePersonalDetailsDto: UpdatePersonalDetailsDto,
-    req?: Request
+    headers?: IncomingHttpHeaders,
+    body?: any
   ) {
     try {
       const personalDetails = await this.resumeModel.findOneAndUpdate(
@@ -44,8 +45,8 @@ export class ResumeService {
       this.logService.emitEvent('asyncLogging', {
         resumeId: id,
         request: {
-          headers: req && req.headers ? req.headers : '',
-          body: req && req.body ? req.body : ''
+          headers,
+          body
         },
         response: { ...personalDetails }
       })
@@ -87,7 +88,8 @@ export class ResumeService {
   async updateExperience (
     id: string,
     updateExperienceDto: UpdateExperienceDto,
-    req: Request
+    headers?: IncomingHttpHeaders,
+    body?: any
   ) {
     try {
       const experiences = await this.resumeModel.findOneAndUpdate(
@@ -99,8 +101,8 @@ export class ResumeService {
       this.logService.emitEvent('asyncLogging', {
         resumeId: id,
         request: {
-          headers: req.headers,
-          body: req.body
+          headers,
+          body
         },
         response: { ...experiences }
       })
@@ -111,7 +113,7 @@ export class ResumeService {
     }
   }
 
-  async updateSkill (id: string, updateSkillDto: UpdateSkillDto, req: Request) {
+  async updateSkill (id: string, updateSkillDto: UpdateSkillDto,headers?: IncomingHttpHeaders, body?: any) {
     try {
       const skills = await this.resumeModel.findOneAndUpdate(
         { resumeId: id },
@@ -122,8 +124,8 @@ export class ResumeService {
       this.logService.emitEvent('asyncLogging', {
         resumeId: id,
         request: {
-          headers: req.headers,
-          body: req.body
+          headers,
+          body
         },
         response: { ...skills }
       })
@@ -137,7 +139,8 @@ export class ResumeService {
   async updateProject (
     id: string,
     updateProjectsDto: UpdateProjectsDto,
-    req: Request
+    headers?: IncomingHttpHeaders,
+    body?: any
   ) {
     try {
       const projects = await this.resumeModel.findOneAndUpdate(
@@ -149,8 +152,8 @@ export class ResumeService {
       this.logService.emitEvent('asyncLogging', {
         resumeId: id,
         request: {
-          headers: req.headers,
-          body: req.body
+          headers,
+          body
         },
         response: { ...projects }
       })
@@ -164,7 +167,8 @@ export class ResumeService {
   async updateAwards (
     id: string,
     updateAwardsDto: UpdateAwardsDto,
-    req: Request
+    headers?: IncomingHttpHeaders,
+    body?: any
   ) {
     try {
       const awards = await this.resumeModel.findOneAndUpdate(
@@ -176,8 +180,8 @@ export class ResumeService {
       this.logService.emitEvent('asyncLogging', {
         resumeId: id,
         request: {
-          headers: req.headers,
-          body: req.body
+          headers,
+          body
         },
         response: { ...awards }
       })
