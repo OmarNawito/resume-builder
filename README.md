@@ -219,11 +219,11 @@ Set the header as follows:
     "skills": [
         {
             "name": "Javascript",
-            "details": "react"
+            "details": ["react"]
         },
         {
             "name": "php",
-            "details": "laravel"
+            "details": ["laravel"]
         }
     ]
 }
@@ -272,21 +272,62 @@ Set the header as follows:
 
 `200 OK`
 
+### Update Awards Details
+
+`POST http://localhost:4000/api/resume/awards/1234`
+
+Set the header as follows:
+
+```
+"Content-Type": "application/json"
+"Accept": "application/json"
+```
+
+#### Body
+
+```
+{
+    "awards": [
+        {
+            "name": "Best Developer",
+            "date ": "Sep 2020",
+            "awarder": "google",
+            "summary": "best developer",
+            "date": "june 2017"
+        },
+        {
+            "name": "Best Developer",
+            "date ": "Sep 2020",
+            "awarder": "google",
+            "summary": "best developer",
+            "date": "june 2017"
+        }
+    ]
+}
+```
+
+#### Response
+
+##### Success
+
+`200 OK`
+
 # TODO
+
 ## BACKEND
 
-- [ ] Add Authentication Module
-- [ ] Cache Resume Data Using Redis
-- [ ] Handle PDF File name with Random String
-- [ ] Send Resume By Email 
+- [ ] Add authentication Module
+- [ ] Cache resume data using redis
+- [ ] Handle PDF file name with random string
+- [ ] Send resume by email 
 
 ## CLIENT
 
-- [ ] Get My Resumes
-- [ ] Add Many Templates
-- [ ] Add Custom Section 
-- [ ] Render Updates in Preview Template  
-- [ ] add Authentication Components
-- [ ] Adding Date Picker 
-- [ ] Make Resume Validation
-- [ ] Add many Resumes 
+- [ ] Get my resumes
+- [ ] Add many templates
+- [ ] Add custom section 
+- [ ] Render updates while the user typing in the preview template ( real time )
+- [ ] Add authentication components
+- [ ] Adding date picker 
+- [ ] Make resume validation
+- [ ] Add many resumes 
