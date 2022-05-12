@@ -219,11 +219,11 @@ Set the header as follows:
     "skills": [
         {
             "name": "Javascript",
-            "details": "react"
+            "details": ["react"]
         },
         {
             "name": "php",
-            "details": "laravel"
+            "details": ["laravel"]
         }
     ]
 }
